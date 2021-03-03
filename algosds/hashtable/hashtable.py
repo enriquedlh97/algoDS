@@ -10,6 +10,9 @@ class HashTable(object):
     Attributes:
         MULT: Base value for updating current additive hash code in the
               string_hash() method. Helps provide large range of values.
+              Important to try to choose prime numbers that are not close
+              to powers of 2. "See string_hash" documentation for links to
+              explanations of this.
     """
 
     def __init__(self):
@@ -31,6 +34,13 @@ class HashTable(object):
             1. "ord()" returns integer representing the Unicode character (inverse of "chr()").
             2. "reduce" is equivalent to reduce(function, iterable, initializer=None). Here
                 initializer=0
+
+        Why choose prime numbers that are not close to powers of 2 for the size of the
+        hash table when using division method for hashing:
+            - https://cs.stackexchange.com/questions/19020/why-should-one-not-use-a-2p-size-hash-table-when-using-the-division-method-as-a/19021#19021
+            - https://stackoverflow.com/questions/5929878/why-is-the-size-127-prime-better-than-128-for-a-hash-table
+            - https://cs.stackexchange.com/questions/86237/hash-size-are-prime-numbers-near-powers-of-two-a-poor-choice-for-the-modulus/86345#86345
+            - https://cs.stackexchange.com/questions/19020/why-should-one-not-use-a-2p-size-hash-table-when-using-the-division-method-as-a#:~:text=An%20uniform%20hash%20function%20is,and%20many%20collisions%20will%20ensue.
 
         Args:
             s: String value to be hashed
