@@ -50,6 +50,11 @@ class Anagram(object):
         """
         pass
 
+    def find_anagrams_chashtable(self, ):
+        """ Finds groups of anagrams in a set of words using sorted and custom hashtable
+        """
+        pass
+
     def find_anagrams_csort_chashtable(self, ):
         """ Finds groups of anagrams in a set of words using custom sort and custom hashtable
 
