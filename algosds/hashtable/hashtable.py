@@ -26,6 +26,9 @@ class HashTable(object):
         is an additive function of each individual character. Hence, the following
         characteristics:
 
+        Time complexity: O(n) where n is the size of the string
+        Space complexity: O(1)
+
         1. Examines all characters
         2. Provides large range of values (this avoids collisions)
         3. No one character dominates
