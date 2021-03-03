@@ -17,7 +17,6 @@ class HashTable(object):
 
     def __init__(self):
         self.MULT = 997
-        pass
 
     def string_hash(self, s, modulus):
         """Hashes string using polynomial rolling hash function.
