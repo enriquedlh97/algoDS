@@ -20,7 +20,7 @@ class HashTable(object):
         pass
 
     def string_hash(self, s, modulus):
-        """Hashes string
+        """Hashes string using polynomial rolling hash function.
 
         This hash function is an incremental one. This means that the hash code
         is an additive function of each individual character. Hence, the following
@@ -32,6 +32,8 @@ class HashTable(object):
         1. Examines all characters
         2. Provides large range of values (this avoids collisions)
         3. No one character dominates
+
+        Explanation of this function: https://iq.opengenus.org/string-hashing/#:~:text=One%20of%20the%20most%20common,O(1)%20time%20complexity.
 
         Note:
             1. "ord()" returns integer representing the Unicode character (inverse of "chr()").
