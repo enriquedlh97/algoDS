@@ -122,5 +122,11 @@ class ContactList:
         """
         return set(self.names) == set(other.names)
 
-    def merge_contact_lists(self):
-        pass
+    def merge_contact_lists(self, contacts):
+        """
+
+        Returns:
+
+        """
+        return list(set(contacts))
+
