@@ -18,13 +18,17 @@ class Anagram(object):
         """ Finds groups of anagrams in a set of words using python sorted() and defaultdict(list)
 
         Using collections.defaultdict(), as opposed to normal dict, it does not raise KeyError,
-        instead, it provides a default value for a key that doe snot exists.
+        instead, it provides a default value for a key that does not exists.
         https://www.geeksforgeeks.org/defaultdict-in-python/
 
         Using list as default_factory in defaultdict() creates a defaultdict with values
         that are a list. This is useful for grouping the strings that are anagrams.
+
+        Args:
+            see: Boolean value. When true it returns the anagram groups and displays them
+            automatically. When false it only stores the in the anagram_groups object property
         """
-        # Creates a defaultdict with values a list
+        # Creates a defaultdict with values as list
         self.anagram_groups = collections.defaultdict(list)
 
         for string in self.strings:
@@ -51,7 +55,7 @@ class Anagram(object):
         pass
 
     def find_anagrams_chashtable(self, ):
-        """ Finds groups of anagrams in a set of words using sorted and custom hashtable
+        """ Finds groups of anagrams in a set of words using sorted() and custom hashtable
         """
         pass
 
