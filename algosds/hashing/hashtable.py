@@ -55,3 +55,21 @@ class HashTable(object):
         """
 
         return functools.reduce(lambda v, c: (v * self.MULT + ord(c)) % modulus, s, 0)
+
+
+class ContactList:
+    """
+
+    """
+
+    def __init__(self):
+        pass
+
+    def __hash__(self):
+        pass
+
+    def __eq__(self, other):
+        pass
+
+    def merge_contact_lists(self):
+        pass
