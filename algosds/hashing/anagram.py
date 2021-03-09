@@ -24,6 +24,9 @@ class Anagram(object):
         Using list as default_factory in defaultdict() creates a defaultdict with values
         that are a list. This is useful for grouping the strings that are anagrams.
 
+        Time complexity: 
+        Space complexity:
+
         Args:
             see: Boolean value. When true it returns the anagram groups and displays them
             automatically. When false it only stores the in the anagram_groups object property
