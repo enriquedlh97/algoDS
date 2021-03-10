@@ -1,4 +1,7 @@
 class ContactList:
+    # TODO: Define problem solved by this class and
+    #   understand how to properly use it to store
+    #   contacts in hashtable
     """ Class to represent contacts
 
     Taken from "Elements of programming interviews in python" page 161.
