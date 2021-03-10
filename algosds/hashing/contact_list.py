@@ -65,7 +65,7 @@ class ContactList:
 
 
 def merge_contact_lists(contacts):
-    """
+    """ Merges list of objects of type ContactList into a single list
 
     Returns:
 
