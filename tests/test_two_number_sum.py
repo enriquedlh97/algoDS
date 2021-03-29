@@ -11,6 +11,8 @@ from algosds.problems.patterns.pattern_two_pointers.two_number_sum import \
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')
 
+#print("My Path=",myPath)
+
 tests = [([3, 5, -4, 8, 11, 1, -1, 6], 10, [-1, 11]),
          ([4, 6], 10, [4, 6]),
          ([4, 6, 1], 5, [4, 1]),
