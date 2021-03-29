@@ -22,10 +22,42 @@ Output:
 
 # Time O(n^2)
 # Space O(1)
-def twoNumberSum(array, targetSum):
+def twoNumberSum_forLoop(array, targetSum):
     for index, n_1 in enumerate(array):
         for n_2 in array[index + 1:]:
             if n_1 + n_2 == targetSum:
                 return [n_1, n_2]
+
+    return []
+
+# Time O(n)
+# Space O(n)
+def twoNumberSum_hashTable(array, targetSum):
+    sumComplement = {}
+    for num in array:
+		valueComplement = targetSum - num
+		if valueComplement in sumComplement:
+			return [valueComplement, num]
+		else:
+			sumComplement[num] = True
+
+    return []
+
+# Time O(nlg(n))
+# Space O(1)
+def twoNumberSum_pointers(array, targetSum):
+    array.sort()
+    rightPointer = len(array) - 1
+    leftPointer = 0
+
+    for idx in array:
+        sum = array[leftPointer] + array[rightPointer]
+        if sum == targetSum:
+            return [array[leftPointer], array[rightPointer]]
+        else:
+            if sum < targetSum:
+                leftPointer += 1
+            else:
+                rightPointer -= 1
 
     return []
