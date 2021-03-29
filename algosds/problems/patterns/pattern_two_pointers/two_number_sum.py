@@ -38,7 +38,13 @@ def two_number_sum_hash_table(array, target_sum):
     Stores all number in hashtable allowing to access them in O(1),
     then checks if the complement of num to sum 10 is in the table.
 
-    The complement is going to be another integer from the array.
+    It traverses the array and searches for its complement to sum up to
+    10 in the hash table. If it is not there, then adds the current int
+    to the hash table for it to be checked ass complement of another int.
+
+    complement = 10 - current int
+
+    complement has to be in the hash table.
     """
     sum_complement = {}
     for num in array:
