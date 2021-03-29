@@ -1,4 +1,4 @@
-'''
+"""
 Problem:
 
 Given an non-empty array of different integers and a target sum integer,
@@ -17,47 +17,56 @@ Input:
 
 Output:
     [-1,11]
-'''
+"""
 
 
 # Time O(n^2)
 # Space O(1)
-def twoNumberSum_forLoop(array, targetSum):
+def two_number_sum_for_loop(array, target_sum):
     for index, n_1 in enumerate(array):
         for n_2 in array[index + 1:]:
-            if n_1 + n_2 == targetSum:
+            if n_1 + n_2 == target_sum:
                 return [n_1, n_2]
 
     return []
 
+
 # Time O(n)
 # Space O(n)
-def twoNumberSum_hashTable(array, targetSum):
-    sumComplement = {}
-    for num in array:
-		valueComplement = targetSum - num
-		if valueComplement in sumComplement:
-			return [valueComplement, num]
-		else:
-			sumComplement[num] = True
+def two_number_sum_hash_table(array, target_sum):
+    """
+    Stores all number in hashtable allowing to access them in O(1),
+    then checks if the complement of num to sum 10 is in the table.
 
-    return []
+    The complement is going to be another integer from the array.
+    """
+    sum_complement = {}
+    for num in array:
+        value_complement = target_sum - num
+        if value_complement in sum_complement:  # checks if the complement is already in the table
+            return [value_complement, num]
+        else:
+            # adds current num to table, which could be the complement to sum 10 of another int from the array
+            sum_complement[num] = True
+
+        return []
+
 
 # Time O(nlg(n))
 # Space O(1)
-def twoNumberSum_pointers(array, targetSum):
+def two_number_sum_pointers(array, target_sum):
     array.sort()
-    rightPointer = len(array) - 1
-    leftPointer = 0
+    right_pointer = len(array) - 1
+    left_pointer = 0
 
-    for idx in array:
-        sum = array[leftPointer] + array[rightPointer]
-        if sum == targetSum:
-            return [array[leftPointer], array[rightPointer]]
+    for _ in array:
+        pointer_sum = array[left_pointer] + array[right_pointer]
+        if pointer_sum == target_sum:
+            return [array[left_pointer], array[right_pointer]]
         else:
-            if sum < targetSum:
-                leftPointer += 1
+            if pointer_sum < target_sum:
+                left_pointer += 1
             else:
-                rightPointer -= 1
+                right_pointer -= 1
 
     return []
