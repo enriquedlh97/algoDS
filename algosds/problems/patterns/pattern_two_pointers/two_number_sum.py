@@ -66,7 +66,7 @@ def two_number_sum_hash_table(array, target_sum):
             # adds current num to table, which could be the complement to sum 10 of another int from the array
             sum_complement[num] = True
 
-        return []
+    return []
 
 
 # Time O(nlg(n))
