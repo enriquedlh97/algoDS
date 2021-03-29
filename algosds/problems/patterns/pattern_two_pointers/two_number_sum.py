@@ -23,6 +23,12 @@ Output:
 # Time O(n^2)
 # Space O(1)
 def two_number_sum_for_loop(array, target_sum):
+    """  Searches pair sum with for loop
+
+        Attributes:
+            array: Non-empty array with possible integers
+            target_sum: Target sum of any two number pair from array
+    """
     for index, n_1 in enumerate(array):
         for n_2 in array[index + 1:]:
             if n_1 + n_2 == target_sum:
@@ -34,7 +40,8 @@ def two_number_sum_for_loop(array, target_sum):
 # Time O(n)
 # Space O(n)
 def two_number_sum_hash_table(array, target_sum):
-    """
+    """  Searches pair sum with hash table
+
     Stores all number in hashtable allowing to access them in O(1),
     then checks if the complement of num to sum 10 is in the table.
 
@@ -42,9 +49,13 @@ def two_number_sum_hash_table(array, target_sum):
     10 in the hash table. If it is not there, then adds the current int
     to the hash table for it to be checked ass complement of another int.
 
-    complement = 10 - current int
+    complement = target sum - current int
 
     complement has to be in the hash table.
+
+    Attributes:
+        array: Non-empty array with possible integers
+        target_sum: Target sum of any two number pair from array
     """
     sum_complement = {}
     for num in array:
@@ -61,6 +72,24 @@ def two_number_sum_hash_table(array, target_sum):
 # Time O(nlg(n))
 # Space O(1)
 def two_number_sum_pointers(array, target_sum):
+    """  Searches pair sum by sorting array
+
+    The array is first sorted and then this sorted characteristic is used to search in O(n)
+
+    Uses two pointers. One is initialized at the beginning of the array and the second one at the and.
+    Then, the sum of both pointers is computed. If the sum is greater than the target sum,
+    then the end pointer is lowered to the previous value. If it is too small, then the
+    start pointer is switched to the next value.
+
+    This is repeated until the sum is optimal. Works because the array is sorted. 
+
+    Note: Assumes that the ".sort()" function runs in O(nlg(n))
+          With the sorted array, the answer is found in O(n)
+
+    Attributes:
+        array: Non-empty array with possible integers
+        target_sum: Target sum of any two number pair from array
+    """
     array.sort()
     right_pointer = len(array) - 1
     left_pointer = 0
