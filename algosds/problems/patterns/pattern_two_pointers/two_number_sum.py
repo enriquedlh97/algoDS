@@ -9,7 +9,7 @@ When there is no pair summing up to the target return an empty array.
 Single integers cannot be summed to themselves. The pair must be comprised
 of different integers from the array.
 
-There is at most one pair summing up to the target.
+There is a maximum of one pair of numbers summing up to the target sum
 
 Input:
     array: [3, 5, -4, 8, 11, 1, -1, 6]
@@ -81,7 +81,7 @@ def two_number_sum_pointers(array, target_sum):
     then the end pointer is lowered to the previous value. If it is too small, then the
     start pointer is switched to the next value.
 
-    This is repeated until the sum is optimal. Works because the array is sorted. 
+    This is repeated until the sum is optimal. Works because the array is sorted.
 
     Note: Assumes that the ".sort()" function runs in O(nlg(n))
           With the sorted array, the answer is found in O(n)
