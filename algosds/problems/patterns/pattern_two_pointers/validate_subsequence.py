@@ -1,7 +1,7 @@
 """
 Problem:
 
-Given two non-empy arrays of integers, write a function that determines whether the
+Given two non-empty arrays of integers, write a function that determines whether the
 second array is a subsequence of the first one.
 
 A subsequence of an array is a set of numbers that aren't necessarily adjacent in the
