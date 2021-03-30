@@ -37,6 +37,6 @@ pytest tests
 ```
 For running some specific tests write (e.g. two_number_sum):
 ```
-pytest tests.test_two_number_sum.py
+pytest tests/test_two_number_sum.py
 ```
 
