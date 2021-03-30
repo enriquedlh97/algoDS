@@ -42,4 +42,19 @@ def test_is_valid_subsequence_for_loop(array, sequence, result):
     assert is_valid_subsequence_for_loop(array, sequence) == result
 
 
+@pytest.mark.parametrize("array, sequence, result", tests)
+def test_is_valid_subsequence_while(array, sequence, result):
+    assert is_valid_subsequence_while(array, sequence) == result
+
+
+@pytest.mark.parametrize("array, sequence, result", tests)
+def test_is_valid_subsequence_for_loop_pop(array, sequence, result):
+    assert is_valid_subsequence_for_loop_pop(array, sequence) == result
+
+    
+# For some reason it does not pass the tests, however when run manually the tests are passed
+@pytest.mark.parametrize("array, sequence, result", tests)
+def test_is_valid_subsequence_hash_table(array, sequence, result):
+    assert is_valid_subsequence_hash_table(array, sequence) == result
+
 
