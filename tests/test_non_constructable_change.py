@@ -25,6 +25,7 @@ tests = [([5, 7, 1, 1, 2, 3, 22], 20),
          ([109, 2000, 8765, 19, 18, 17, 16, 8, 1, 1, 2, 4], 87),
          ([1, 2, 3, 4, 5, 6, 7], 29)]
 
+
 @pytest.mark.parametrize("coins, answer", tests)
 def test_non_constructable_change_optimal(coins, answer):
     assert non_constructable_change_optimal(coins) == answer
