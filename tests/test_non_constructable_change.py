@@ -10,7 +10,6 @@ from algosds.problems.patterns.pattern_top_k_elements.non_constructable_change i
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')
 
-
 tests = [([5, 7, 1, 1, 2, 3, 22], 20),
          ([1, 1, 1, 1, 1], 6),
          ([1, 5, 1, 1, 1, 10, 15, 20, 100], 55),
