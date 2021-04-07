@@ -39,4 +39,8 @@ For running some specific tests write (e.g. two_number_sum):
 ```
 pytest tests/test_two_number_sum.py
 ```
+For omitting a particular test, go to the file containing the test and add the following decorator to the test function:
+```
+@pytest.mark.skip(reason="Should not be run because...")
+```
 
