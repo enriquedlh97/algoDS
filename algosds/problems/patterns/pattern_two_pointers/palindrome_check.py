@@ -98,6 +98,8 @@ def is_palindrome_reversed_string_join(string):
     string. This process takes O(n)-time, nevertheless, it is only performed once. Making the final time complexity
     O(2n) -> O(n).
 
+    More on .join() https://python.plainenglish.io/concatenating-strings-efficiently-in-python-9bfc8e8d6f6e
+
     :param string: String to check if it is palindrome
     :return: True if it is palindrome, False otherwise
     """
