@@ -181,6 +181,6 @@ def is_palindrome_two_pointers_explicit(string):
     while front_pointer < back_pointer:
         if string[front_pointer] != string[back_pointer]:
             return False
-    front_pointer += 1
-    back_pointer -= 1
+        front_pointer += 1
+        back_pointer -= 1
     return True
