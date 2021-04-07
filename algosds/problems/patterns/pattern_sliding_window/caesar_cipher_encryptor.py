@@ -79,6 +79,8 @@ def get_new_letter_hash_helper(letter, key):
     return chr(new_letter) if new_letter <= 122 else chr(96 + new_letter % 122)
 
 
+# Time O(n), where n is the size of the string
+# Space O(n),
 def caesar_cipher_encryptor_alphabet_original(string, key):
     """ Creates a list with the alphabet, computes as previous functions.
 
