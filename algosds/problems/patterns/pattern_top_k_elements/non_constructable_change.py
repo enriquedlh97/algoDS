@@ -143,7 +143,7 @@ def non_constructable_change(coins):
         bigger than "constructable change + 1"
 
         Attributes:
-        coins: Array of integer values representing the value of a particular coin at hand. It can be empty.
+            coins: Array of integer values representing the value of a particular coin at hand. It can be empty.
     """
 
     if coins:
