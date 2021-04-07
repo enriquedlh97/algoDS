@@ -10,6 +10,7 @@ To get a working environment there are two possible options.
 
 ### Dependencies
 ```
+python 3.8.5
 pytest 6.1.1
 ```
 ### Installation
