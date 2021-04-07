@@ -50,6 +50,17 @@ def caesar_cipher_encryptor_hash(string, key):
 # Time O(n), where n is the size of the string
 # Space O(n),
 def caesar_cipher_encryptor_hash_original(string, key):
+    """ Gets UNICODE, adds adjusted shift and hashes (using modulo) to get new position
+
+    Similar to the previous one, but it does not map the string to a new range, instead it adjusts the key by using the
+    modulo operator with 26. To wrap around the alphabet it checks if the shifted letter code is grater than 122 ('z'),
+    if it is, then it uses the modulo operator to map ot to the range 97 - 122, if it is not, then it just returns the
+    character corresponding to the code.
+
+    :param string: non-empty string containing the input letters
+    :param key: non-negative integer indicating the number of units the letters should be shifted
+    :return: string containing the shifted letters
+    """
     shifted_letters = []
     adjusted_key = key % 26
     for letter in string:
@@ -58,11 +69,26 @@ def caesar_cipher_encryptor_hash_original(string, key):
 
 
 def get_new_letter_hash_helper(letter, key):
+    """ Gets the new shifted letter
+
+    :param letter: non-empty character containing a particular letter
+    :param key: non-negative integer indicating the number of units the letters should be shifted
+    :return: character representing the new shifted letter
+    """
     new_letter = ord(letter) + key
     return chr(new_letter) if new_letter <= 122 else chr(96 + new_letter % 122)
 
 
 def caesar_cipher_encryptor_alphabet_original(string, key):
+    """ Creates a list with the alphabet, computes as previous functions.
+
+    It works the same as the hash original function, the only difference is that is manually creates a list containing
+    the alphabet.
+    
+    :param string: non-empty string containing the input letters
+    :param key: non-negative integer indicating the number of units the letters should be shifted
+    :return: string containing the shifted letters
+    """
     shifted_letters = []
     adjusted_key = key % 26
     alphabet = list('abcdefghijklmnopqrstuvwxyz')
@@ -72,5 +98,15 @@ def caesar_cipher_encryptor_alphabet_original(string, key):
 
 
 def get_new_letter_alphabet_helper(letter, key, alphabet):
+    """ Gets the new shifted letter
+
+    Finds the current letter in the alphabet array, adds the key and finds the new shifted letter by hashing the new
+    value with modulo to get the new position wrapped around the length of the alphabet.
+
+    :param letter: non-empty character containing a particular letter
+    :param key: non-negative integer indicating the number of units the letters should be shifted
+    :param alphabet:
+    :return: character representing the new shifted letter
+    """
     new_letter = alphabet.index(letter) + key
     return alphabet[new_letter % 26]
