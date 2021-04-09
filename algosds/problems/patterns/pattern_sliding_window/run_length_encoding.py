@@ -70,6 +70,8 @@ def run_length_encoding_double_for_loop(string):
     return "".join(encoded_run)
 
 
+# Time O(n), where n is the length of the string
+# Space O(n),
 def run_length_encoding_single_for_loop(string):
     """ Counts the elements of a run and adds the encoded values to the string, if count hits 9 it adds incrementally
 
@@ -102,6 +104,8 @@ def run_length_encoding_single_for_loop(string):
     return "".join(encoded_run)
 
 
+# Time O(n), where n is the length of the string
+# Space O(n),
 def run_length_encoding_original(string):
     """ Original solution, counts element sin run and adds them incrementally to finals tring.
 
