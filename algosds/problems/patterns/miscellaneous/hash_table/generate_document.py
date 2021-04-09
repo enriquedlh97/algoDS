@@ -106,7 +106,7 @@ def generate_document_hashtable_original(characters, document):
 
     for character in characters:
         if character not in character_counts:
-            character_counts[character] = 1
+            character_counts[character] = 0
 
         character_counts[character] += 1
 
