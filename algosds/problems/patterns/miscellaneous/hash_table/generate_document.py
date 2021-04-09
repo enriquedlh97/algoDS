@@ -79,7 +79,7 @@ def generate_document_single_counts(characters, document):
         if document_frequency > characters_frequency:
             return False
 
-        already_counted.app(character)
+        already_counted.add(character)
 
     return True
 
@@ -112,7 +112,7 @@ def generate_document_hashtable_original(characters, document):
 
     for character in document:
         if character not in character_counts or character_counts[character] == 0:
-            return  False
+            return False
 
         character_counts[character] -= 1
 
