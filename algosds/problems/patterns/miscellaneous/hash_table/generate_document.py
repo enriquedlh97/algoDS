@@ -191,7 +191,7 @@ def generate_document_hashtable(characters, document) -> bool:
 
     This solution is the exact same as the previous one, with minor differences in the implementation in the form of an
     extra check is added at the beginning returning False whenever the characters string has a smaller length
-    than the document string. The code is structured a little different, but the logic is the exact same. 
+    than the document string. The code is structured a little different, but the logic is the exact same.
 
     :param characters: string containing the available characters
     :param document: string containing the target that is to be checked if it can be generated
