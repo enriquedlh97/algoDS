@@ -16,7 +16,7 @@ def bubble_sort_for_loop(array):
     for idx_outer in reversed(range(len(array))):
         for idx_inner in range(0, idx_outer):
             if array[idx_inner] > array[idx_inner + 1]:
-                swap_for_loop(idx_inner, array)
+                swap(idx_inner, array)
 
     return array
 
@@ -59,4 +59,3 @@ def bubble_sort_while_original(array):
 
 def swap(idx, array):
     array[idx], array[idx + 1] = array[idx + 1], array[idx]
-
