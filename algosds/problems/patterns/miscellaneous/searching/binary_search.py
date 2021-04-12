@@ -1,14 +1,16 @@
 """
 Problem:
 
-Write a function that takes in an array of integers and returns a sorted version of that array. Use the Selection Sort
-algorithm to sort the array.
+Write a function that takes in a sorted array of integers and a target integer. The function should use the Binary
+Search algorithm to determine if the target integer is contained in the array and should return its index if it is,
+otherwise it should return -1.
 
 Input:
-    array: [8, 5, 2, 9, 5, 6, 3]
+    array: [0, 1, 21, 33, 45, 45, 61, 71, 72, 73]
+    target: 33
 
 Output:
-    [2, 3, 5, 5, 6, 8, 9]
+    3
 """
 
 
