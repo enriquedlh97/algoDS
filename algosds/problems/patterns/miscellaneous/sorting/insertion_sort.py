@@ -12,6 +12,8 @@ Output:
 """
 
 
+# Time O(n^2), where n is the length of the array
+# Space O(1)
 def insertion_sort_two_for_loops(array):
     """ Uses two for loops to sort
 
@@ -19,7 +21,7 @@ def insertion_sort_two_for_loops(array):
     The other 2 solutions use the same logic and strategy, but since the outer for loop is not explicit and a while loop
     is used instead, it is more difficult to see why it is O(n^2) time.
 
-    For a detail explanation fo the time complexity see: https://www.youtube.com/watch?v=ufIET8dMnus
+    For a detail explanation of the time complexity see: https://www.youtube.com/watch?v=ufIET8dMnus
     For a visual comparison between bubble sort and insertion sort see: https://www.youtube.com/watch?v=TZRWRjq2CAg
 
     The outer loop traverses the array and the inner loop make sure that each new element, no yet sorted, selected by
@@ -47,6 +49,8 @@ def swap(idx, array):
     array[idx], array[idx - 1] = array[idx - 1], array[idx]
 
 
+# Time O(n^2), where n is the length of the array
+# Space O(1)
 def insertion_sort_while(array):
     """ Uses outer for loop and inner while loop to sort (original)
 
