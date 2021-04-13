@@ -134,13 +134,34 @@ def find_three_largest_numbers_elif(array):
 # Time O(n)
 # Space O(1)
 def find_three_largest_numbers_original(array):
+    """ Traverses the array once, actively updates output array elements. Uses for loop to shift output array elements
+
+    This solution loops once over the input array. For each element it checks if it the current element should take the
+    the place of the current largest, second largest or third largest element in the output array or if it should not
+    take any place in the output array. Depending on which place it takes, the current elements of the the output array
+    are shifted using a for loop.
+
+    :param array: array of size >= 3 to be searched for the largest 3 integers
+    :return: array with the largest 3 elements sorted in ascending order
+    """
     three_largest = [None, None, None]
     for num in array:
-        update_largest(three_largest, num)
+        update_largest(three_largest, num) # For each element the output array is updated if necessary
     return three_largest
 
 
 def update_largest(three_largest, num):
+    """ Helper function to check if a value should be int he current largest elements array and in which position
+
+    Checks if the current element should be the first, second or third element of the output array, or
+    if it should not go in the output array.
+
+    Depending on the previous check, the array if shifted if necessary.
+
+    :param three_largest: array containing the current three largest elements
+    :param num: Integer representing the element to be checked if it should be in the array of current largest elements
+    :return: None
+    """
     if three_largest[2] is None or num > three_largest[2]:
         shift_and_update(three_largest, num, 2)
     elif three_largest[1] is None or num > three_largest[1]:
@@ -150,8 +171,20 @@ def update_largest(three_largest, num):
 
 
 def shift_and_update(array, num, idx):
-    for i in range(idx + 1):
+    """
+
+    :param array: Array of current largest elements, it is to be updated
+    :param num: New value that should be in array. Should be in index specified in idx
+    :param idx: Integer representing the index that the num value should take in the array. It is also the index from
+                which the shifting should start
+    :return: None
+    """
+    for i in range(idx + 1):  # Adds one to the range because the range is non-inclusive.
         if i == idx:
+            # If the current index form the for loop iteration is the same as the new index specified as parameter that
+            # indicates the position that the new value "num" should take in the array, then the value is set to num.
             array[i] = num
         else:
+            # Otherwise, the current index takes the value of the element at the next index, this is basically a shift
+            # to the left
             array[i] = array[i + 1]
