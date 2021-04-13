@@ -14,8 +14,8 @@ Output:
 """
 
 
-# Time O()
-# Space O()
+# Time O( lg(n) )
+# Space O(1)
 def binary_search_while(array, target):
     """ Uses while to test stop condition.
 
@@ -54,8 +54,8 @@ def binary_search_while(array, target):
     return - 1
 
 
-# Time O()
-# Space O()
+# Time O( lg(n) )
+# Space O( lg(n) ) because of the call stack
 def binary_search_recursive(array, target, left_pointer=0, right_pointer=None):
     """ Recursive binary search algorithm
 
@@ -106,8 +106,8 @@ def get_middle(left_pointer, right_pointer):
     return (left_pointer + right_pointer) // 2
 
 
-# Time O()
-# Space O()
+# Time O( lg(n) )
+# Space O( lg(n) ) because of the call stack
 def binary_search_recursive_original(array, target):
     """ Recursive binary search algorithm (original)
 
@@ -141,8 +141,8 @@ def binary_search_recursive_helper(array, target, left, right):
         return binary_search_recursive_helper(array, target, middle + 1, right)
 
 
-# Time O()
-# Space O()
+# Time O( lg(n) )
+# Space O(1)
 def binary_search_while_original(array, target):
     """ Binary search algorithm with while to check for base case
 
