@@ -14,6 +14,8 @@ Output:
 """
 
 
+# Time O()
+# Space O()
 def binary_search_while(array, target):
     left_pointer = 0
     right_pointer = len(array) - 1
@@ -34,6 +36,8 @@ def binary_search_while(array, target):
     return - 1
 
 
+# Time O()
+# Space O()
 def binary_search_recursive(array, target, left_pointer=0, right_pointer=None):
     if right_pointer is None:
         right_pointer = len(array) - 1
@@ -58,6 +62,8 @@ def get_middle(left_pointer, right_pointer):
     return (left_pointer + right_pointer) // 2
 
 
+# Time O()
+# Space O()
 def binary_search_recursive_original(array, target):
     return binary_search_recursive_helper(array, target, 0, len(array) - 1)
 
@@ -75,6 +81,8 @@ def binary_search_recursive_helper(array, target, left, right):
         return binary_search_recursive_helper(array, target, middle + 1, right)
 
 
+# Time O()
+# Space O()
 def binary_search_while_original(array, target):
     left = 0
     right = len(array) - 1
