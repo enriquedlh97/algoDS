@@ -43,7 +43,7 @@ def swap(current_largest_idx, array):
 
 # Time O(n)
 # Space O(1)
-def find_three_largest_numbers_elifs(array):
+def find_three_largest_numbers_elif(array):
     # largest_integers = deque([float('-inf'), float('-inf'), float('-inf')])
     largest_integers = deque([float('-inf') for _ in "123"])
 
