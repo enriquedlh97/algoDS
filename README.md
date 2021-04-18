@@ -33,11 +33,6 @@ conda activate algo_ds
 
 ## Tests
 For running all tests write:
-
-
-
-
-a
 ```
 pytest tests
 ```
@@ -49,4 +44,3 @@ For omitting a particular test, go to the file containing the test and add the f
 ```
 @pytest.mark.skip(reason="Should not be run because...")
 ```
-
