@@ -33,6 +33,11 @@ conda activate algo_ds
 
 ## Tests
 For running all tests write:
+
+
+
+
+a
 ```
 pytest tests
 ```
