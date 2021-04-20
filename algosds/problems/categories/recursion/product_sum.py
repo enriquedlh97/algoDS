@@ -26,6 +26,13 @@ Output:
 def product_sum(array, multiplier=1):
     """ Recursive solution (same as original, hence not included)
 
+    Runs in O(n) time because each element is visited only once, hence it is like iterating over each
+    element once.
+
+    The space complexity is O(d) because, for instance, in [5, 2, [7, -1], 3, [6, [-13, 8], 4]] the maximum depth is d=3
+    where the original array is level 1, then the array [6, [-13, 8], 4] is level 2, and finally array [-13, 8] is level
+    3. This means that there are going to be at most 3 function calls in the call stack at a given time.
+
     :param array: non-empty "special" array
     :param multiplier: integer indicating the depth level of the current array
     :return: the product sum of the input "special array"
