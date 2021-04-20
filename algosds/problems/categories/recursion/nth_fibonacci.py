@@ -22,7 +22,87 @@ Output:
 def get_nth_fib_recursive(n):
     """ Traditional recursive solution
 
+    This solution check for the base cases, when n=1, it returns 0 and when n=2 it return 1, which are the first two
+    Fibonacci numbers. If n is greater than two, then it calls the recursive part of the solution and starts computing
+    the previous numbers in the sequence.
 
+    This solution is very expensive regarding its time complexity since every fibonacci number is computed basically
+    two times. For instance, when n=10 the recursive part is executed twice, first for computing the (n-1)th fibonacci
+    number and then for computing the (n-2)th fibonacci number, which when summed, generate the actual nth fibonacci
+    number requested. So in the case of n=10, it would call func(n=9) + func(n=8) and then each of them would call two
+    more times the function. n=9 would call func(n=8) + func(n=7)  and n=8 would call func(n=7) + func(n=6). Already it
+    can be seen how the work is duplicated.
+
+    The recursive relation for this solution would then be:
+
+    T(n) =        1                 when n = [1, 2]
+           T(n-1) + T(n-2) + c      when n > 2
+
+    In this case c=5 because we do 2 comparisons + 2 subtractions + 1 addition
+
+    So to solve the recursion T(n) = T(n-1) + T(n-2) + c, since we have two calls, each of them for distinct values
+    (n-1, n-2).
+
+    Because of there are two recursive terms inside the recursive relation the number of nodes in the recursive tree
+    grow as a power of 2 depending on the level k, so the nodes at level k are given by nodes = 2^K
+
+    To get the time complexity we have to compute the total cost of leaf nodes (Lc) and the total cost of internal
+    nodes (Ic).
+    The time complexity would then  be T(n) = O(Lc + Ic)
+
+    To compute Lc we just have to get the number of leaf nodes and then multiply it y the individual node cost, which in
+    this case is c=5. so Lc = (total leaf nodes) * (individual node cost)
+
+    Since we know we have 2^k nodes at level k, we have to find the nodes at the last k level. For that we have to
+    follow the largest path of the recursion tree and extract the patterns from the recursive part. In this case we
+    should start with T(n) -> T(n-1) -> and continue with the successive biggest terms. Since n-1 > n-2 it will take
+    longer for T(n-1) and its successive terms to reach the base cases, T(2) or T(1). That is why we follow the path of
+    the biggest term.
+
+    The sequence of equations are as follows.
+
+    1. T(n) = T(n-1) + T(n-2) + c  -> follow T(-1)
+    2. T(n-1) = T(n-2) + T(n-3) + c  -> follow T(n-2)
+    3. T(n-2) = T(n-3) + T(n-4) + c  -> follow T(n-3)
+    4. T(n-3) = T(n-4) + T(n-5) + c  -> follow T(n-4)
+
+    Already we can see that the pattern is n - x  where, when following the biggest recursive term, x will take the
+    values of [0, 1, 2, 3, ..., n] as follows:
+    1. n - 0
+    2. n - 1
+    3. n - 2
+    4. n - 3
+
+    The pattern here can be defined as (n - k) where k is the level (starting from level 0), as stated before.
+
+    With this, we can now get the value for k by solving for T(1) as follows.
+
+    T(n - k) = T(1)
+    n - k = 1
+    k = n - 1
+
+    If we now plug in the value of k in our equation for nodes we get the following:
+
+    nodes = 2^k
+    nodes = 2^(n-1)
+
+    So Lc = (cost of individual node) * (number of leaf nodes) = c * 2^(n-1) this can be further simplified as O(2^n)
+    since c * 2^(-1) > 2^n
+
+    Now, we still have to check the total cost of internal nodes Ic. Ic is defined as Ic = sum of costs at each level
+
+    We know there are k = n-1 levels and we know that at each level there are 2^k = 2^n nodes and that each node has a
+    cost of c. So the pattern for getting the total cost at level k is c * 2^k. All we have to do is sum c * 2^ from
+    k = 0 to k = n-1  in this case we can use the formula ( x^(n+1) - 1 ) / (x - 1)  which works for when summing
+    infinite sequences of the form x^0 + x^1 + x^2 + ... where |x| > 1. In this case n = n-1 and x = 2 so we get
+
+    Ic = ( 2^(n-1+1) - 1 ) / (2 - 1)
+    Ic = (2^n - 1) / (1)
+    Ic = 2^n - 1
+
+    This can be further simplified as Ic = O(2^n)
+
+    So total cost is Cost = Lc + Ic = O(2^n) + O(2^n) = O(2^n)
 
     :param n: integer representing the nth fibonacci number to be calculated
     :return: integer representing the nth fibonacci number
