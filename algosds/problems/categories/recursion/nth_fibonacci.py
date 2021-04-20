@@ -94,11 +94,12 @@ def get_nth_fib_recursive(n):
     We know there are k = n-1 levels and we know that at each level there are 2^k = 2^n nodes and that each node has a
     cost of c. So the pattern for getting the total cost at level k is c * 2^k. All we have to do is sum c * 2^ from
     k = 0 to k = n-1  in this case we can use the formula ( x^(n+1) - 1 ) / (x - 1)  which works for when summing
-    infinite sequences of the form x^0 + x^1 + x^2 + ... where |x| > 1. In this case n = n-1 and x = 2 so we get
+    infinite sequences of the form x^0 + x^1 + x^2 + ... where |x| > 1. In this case n = n-1 and x = 2 so we factor out
+    the c and get get
 
-    Ic = ( 2^(n-1+1) - 1 ) / (2 - 1)
-    Ic = (2^n - 1) / (1)
-    Ic = 2^n - 1
+    Ic = c * ( 2^(n-1+1) - 1 ) / (2 - 1)
+    Ic = c * (2^n - 1) / (1)
+    Ic = c * (2^n - 1)
 
     This can be further simplified as Ic = O(2^n)
 
@@ -123,6 +124,10 @@ def get_nth_fib_tail_recursive(n, two_previous=1, amount=0):
     This solution, as it calls its recursive part, in only takes O(n) time because it only calls itself once, it does
     not split into two recursive calls. The recursive equation would be T(n) = T(n - 1) + 1. Also, since most modern
     compilers are able to do call tail elimination, the space complexity if O(1).
+
+    This solution runs in O(n) when tail call optimization is performed by the compiler because, essentially, the amount
+    value keeps track of the partially computed nth fibonacci number, for that reason, each fibonacci number is computed
+    only once, yielding O(n) time.
 
     More information on tail recursion adn tail call elimination is here:
     https://www.programmersought.com/article/71146901590/
