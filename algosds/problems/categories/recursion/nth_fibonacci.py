@@ -89,6 +89,8 @@ def get_nth_fib_recursive(n):
     So Lc = (cost of individual node) * (number of leaf nodes) = c * 2^(n-1) this can be further simplified as O(2^n)
     since c * 2^(-1) > 2^n
 
+    For more information on simplification see https://math.stackexchange.com/questions/2612966/show-that-2n1-is-o2n
+
     Now, we still have to check the total cost of internal nodes Ic. Ic is defined as Ic = sum of costs at each level
 
     We know there are k = n-1 levels and we know that at each level there are 2^k = 2^n nodes and that each node has a
