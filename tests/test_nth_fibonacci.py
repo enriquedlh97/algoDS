@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.miscellaneous.dynamic_programming_and_recursion.nth_fibonacci import \
+from algosds.problems.categories.recursion.nth_fibonacci import \
     get_nth_fib_recursive, \
     get_nth_fib_tail_recursive, \
     get_nth_fib_memoization, \

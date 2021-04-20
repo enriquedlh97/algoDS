@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.miscellaneous.hash_table.first_non_repeating_character import \
+from algosds.problems.categories.strings.first_non_repeating_character import \
     first_non_repeating_character_brute_force, \
     first_non_repeating_character_hashmap_original, \
     first_non_repeating_character_hashtable

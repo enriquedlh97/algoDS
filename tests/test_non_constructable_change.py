@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.pattern_top_k_elements.non_constructable_change import \
+from algosds.problems.categories.arrays.non_constructable_change import \
     non_constructable_change_optimal, \
     non_constructable_change
 

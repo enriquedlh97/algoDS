@@ -3,12 +3,9 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.pattern_two_pointers.sorted_squared_array import \
+from algosds.problems.categories.arrays.sorted_squared_array import \
     sorted_squared_array_pointers, \
-    sorted_squared_array_pointers_pop, \
-    sorted_squared_array_sort1, \
-    sorted_squared_array_sort_lambda, \
-    sorted_squared_array_sort2
+    sorted_squared_array_pointers_pop
 
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')

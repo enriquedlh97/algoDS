@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.miscellaneous.sorting.bubble_sort import \
+from algosds.problems.categories.sorting.bubble_sort import \
     bubble_sort_for_loop, \
     bubble_sort_while, \
     bubble_sort_while_original

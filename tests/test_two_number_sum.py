@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.pattern_two_pointers.two_number_sum import \
+from algosds.problems.categories.arrays.two_number_sum import \
     two_number_sum_for_loop, \
     two_number_sum_hash_table, \
     two_number_sum_pointers

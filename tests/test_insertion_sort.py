@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.miscellaneous.sorting.insertion_sort import \
+from algosds.problems.categories.sorting.insertion_sort import \
     insertion_sort_two_for_loops, \
     insertion_sort_while
 

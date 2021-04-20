@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.miscellaneous.hash_table.tournament_winner import tournament_winner
+from algosds.problems.categories.arrays.tournament_winner import tournament_winner
 
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')

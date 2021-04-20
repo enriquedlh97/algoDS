@@ -3,9 +3,8 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.miscellaneous.searching.remove_duplicates_from_linked_list import \
+from algosds.problems.categories.linked_lists.remove_duplicates_from_linked_list import \
     remove_duplicates_from_linked_list_single_while, \
-    remove_duplicates_from_linked_list_two_whiles, \
     LinkedList
 
 myPath = os.path.dirname(os.path.abspath(__file__))

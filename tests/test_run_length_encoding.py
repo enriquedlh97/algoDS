@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.pattern_sliding_window.run_length_encoding import \
+from algosds.problems.categories.strings.run_length_encoding import \
     run_length_encoding_single_for_loop, \
     run_length_encoding_double_for_loop, \
     run_length_encoding_original

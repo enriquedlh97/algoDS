@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.miscellaneous.hash_table.generate_document import \
+from algosds.problems.categories.strings.generate_document import \
     generate_document_multiple_counts, \
     generate_document_single_counts, \
     generate_document_sorting, \

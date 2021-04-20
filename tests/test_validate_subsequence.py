@@ -3,11 +3,10 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.pattern_two_pointers.validate_subsequence import \
+from algosds.problems.categories.arrays.validate_subsequence import \
     is_valid_subsequence_for_loop, \
     is_valid_subsequence_while, \
-    is_valid_subsequence_for_loop_pop, \
-    is_valid_subsequence_hash_table
+    is_valid_subsequence_for_loop_pop
 
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')

@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.miscellaneous.searching.binary_search import \
+from algosds.problems.categories.searching.binary_search import \
     binary_search_while, \
     binary_search_recursive, \
     binary_search_recursive_original, \

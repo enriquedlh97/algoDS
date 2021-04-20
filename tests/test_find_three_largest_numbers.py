@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.miscellaneous.searching.find_three_largest_numbers import \
+from algosds.problems.categories.searching.find_three_largest_numbers import \
     find_three_largest_numbers_deque_swap, \
     find_three_largest_numbers_elif, \
     find_three_largest_numbers_original

@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.pattern_two_pointers.palindrome_check import \
+from algosds.problems.categories.strings.palindrome_check import \
     is_palindrome_reversed_string_for_loop, \
     is_palindrome_reversed_string_join, \
     is_palindrome_recursion, \

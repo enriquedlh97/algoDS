@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.patterns.pattern_sliding_window.caesar_cipher_encryptor import \
+from algosds.problems.categories.strings.caesar_cipher_encryptor import \
     caesar_cipher_encryptor_hash, \
     caesar_cipher_encryptor_hash_original, \
     caesar_cipher_encryptor_alphabet_original
