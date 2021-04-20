@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.categories.recursion import product_sum
+from algosds.problems.categories.recursion.product_sum import product_sum
 
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')
