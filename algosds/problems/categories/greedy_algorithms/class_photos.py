@@ -74,7 +74,7 @@ def class_photos_single_check(red_shirt_heights, blue_shirt_heights):
         red_shirt_current_height = red_shirt_heights[idx]
         blue_shirt_current_height = blue_shirt_heights[idx]
 
-        if red_shirt_current_height == "RED":
+        if shirt_color_in_first_row == "RED":
             if red_shirt_current_height >= blue_shirt_current_height:
                 return False
         else:
