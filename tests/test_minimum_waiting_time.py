@@ -31,3 +31,8 @@ tests = [([3, 2, 1, 2, 6], 17),
 @pytest.mark.parametrize("queries, answer", tests)
 def test_minimum_waiting_time(queries, answer):
     assert minimum_waiting_time(queries) == answer
+
+
+@pytest.mark.parametrize("queries, answer", tests)
+def test_minimum_waiting_time_original(queries, answer):
+    assert minimum_waiting_time_original(queries) == answer
