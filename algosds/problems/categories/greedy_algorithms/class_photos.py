@@ -32,6 +32,13 @@ Output:
 def class_photos_simultaneous_check(red_shirt_heights, blue_shirt_heights):
     """ Check simultaneously if photo can be taking for either shirt color on the back.
 
+    This solution sorts both arrays in descending order and then iterates over each value of both arrays simultaneously.
+    It checks every value to see if the photo can be taken, regardless of who will be in the back. This means that it
+    checks both at the same time.
+
+    For it to return False, indicating that the photo cannot be taken, it has to find that the photo cannot be taken for
+    neither of the shirt colors in the back.
+
     :param red_shirt_heights: Non-empty array containing integers representing the heights of students with red shirts
     :param blue_shirt_heights: Non-empty array containing integers representing the heights of students with blue shirts
     :return: True if the photo can be taken following the specified guidelines
@@ -60,6 +67,10 @@ def class_photos_simultaneous_check(red_shirt_heights, blue_shirt_heights):
 # Space O(1)
 def class_photos_single_check(red_shirt_heights, blue_shirt_heights):
     """ First decides which shirt color should be in the back, then checks if the photo cna be taken.
+
+    This solution is essentially the same as the one above. The only difference is that instead of checking both color
+    shirts at the back simultaneously it first decides which color shirt should be in the back. Then, ir proceeds to
+    verify that the picture can be taken with the selected color shirt.
 
     :param red_shirt_heights: Non-empty array containing integers representing the heights of students with red shirts
     :param blue_shirt_heights: Non-empty array containing integers representing the heights of students with blue shirts
