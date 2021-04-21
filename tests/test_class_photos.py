@@ -31,3 +31,8 @@ tests = [([6, 9, 2, 4, 5], [5, 8, 1, 3, 4], True),
 @pytest.mark.parametrize("blue_shirt_heights, red_shirt_heights, answer", tests)
 def test_class_photos_single_check(blue_shirt_heights, red_shirt_heights, answer):
     assert class_photos_single_check(red_shirt_heights, blue_shirt_heights) == answer
+
+
+@pytest.mark.parametrize("blue_shirt_heights, red_shirt_heights, answer", tests)
+def test_class_photos_simultaneous_check(blue_shirt_heights, red_shirt_heights, answer):
+    assert class_photos_simultaneous_check(red_shirt_heights, blue_shirt_heights) == answer
