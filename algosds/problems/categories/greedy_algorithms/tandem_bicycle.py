@@ -33,12 +33,16 @@ Output:
 # Time O( nlg(n) ), where n is the total number of elements in an array
 # Space O(1)
 def tandem_bicycle(red_shirt_speeds, blue_shirt_speeds, fastest):
-    """
+    """ My solution
 
-    :param red_shirt_speeds:
-    :param blue_shirt_speeds:
-    :param fastest:
-    :return:
+    This solution pairs the max value of one array with the min value of the other array when fastest=True and keeps
+     going like this until all pairs are formed. When fastest=False it pairs the max value of one array with the max
+     value of the other array.
+
+    :param red_shirt_speeds: array containing integers representing the speeds of riders with red shirt
+    :param blue_shirt_speeds: array containing integers representing the speeds of riders with blue shirt
+    :param fastest: boolean value indicating whether the total fastest or total slowest speed is to be computed
+    :return: total speed
     """
     red_shirt_speeds.sort(reverse=True)
 
@@ -56,12 +60,15 @@ def tandem_bicycle(red_shirt_speeds, blue_shirt_speeds, fastest):
 
 
 def tandem_bicycle_original(red_shirt_speeds, blue_shirt_speeds, fastest):
-    """
+    """ Original Solution
 
-    :param red_shirt_speeds:
-    :param blue_shirt_speeds:
-    :param fastest:
-    :return:
+    This solution is essentially the same as the one above, the only difference is that botha arrays are sorted in
+    ascending order and then, when checked if fastest=True, if it is in deed True, one of the arrays is reversed.
+
+    :param red_shirt_speeds: array containing integers representing the speeds of riders with red shirt
+    :param blue_shirt_speeds: array containing integers representing the speeds of riders with blue shirt
+    :param fastest: boolean value indicating whether the total fastest or total slowest speed is to be computed
+    :return: total speed
     """
     red_shirt_speeds.sort()
     blue_shirt_speeds.sort()
@@ -80,10 +87,10 @@ def tandem_bicycle_original(red_shirt_speeds, blue_shirt_speeds, fastest):
 
 
 def reverse_array_in_place(array):
-    """
+    """ Helper function for original solution. Reverses array in-place
 
-    :param array:
-    :return:
+    :param array: array to be reversed in-place
+    :return: None
     """
     start = 0
     end = len(array) - 1
