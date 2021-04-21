@@ -26,10 +26,13 @@ Output:
 # Time O( nlg(n) ), where n is the total number of elements in the array
 # Space O(1)
 def minimum_waiting_time(queries):
-    """
+    """ My solution
 
-    :param queries:
-    :return:
+    This solution sorts the queries array in-place and then loops over each value adding it to the waiting time. Each
+    value is multiplied by the number of queries that are left.
+
+    :param queries: non-empty array of positive integers representing the amounts of time queries take to execute
+    :return: integer representing the minimum waiting time for all queries in the input array
     """
     queries.sort()
     wait = 0
@@ -42,10 +45,13 @@ def minimum_waiting_time(queries):
 # Time O( nlg(n) ), where n is the total number of elements in the array
 # Space O(1)
 def minimum_waiting_time_original(queries):
-    """
+    """ Original solution
 
-    :param queries:
-    :return:
+    This solution is the same as the one above, it just is implemented a little different, but the fundamental idea and
+    solution is the same.
+
+    :param queries: non-empty array of positive integers representing the amounts of time queries take to execute
+    :return: integer representing the minimum waiting time for all queries in the input array
     """
     queries.sort()
 
