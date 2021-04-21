@@ -26,6 +26,11 @@ Output:
 # Time O( nlg(n) ), where n is the total number of elements in the array
 # Space O(1)
 def minimum_waiting_time(queries):
+    """
+
+    :param queries:
+    :return:
+    """
     queries.sort()
     wait = 0
     for idx in range(1, len(queries)):
@@ -37,11 +42,16 @@ def minimum_waiting_time(queries):
 # Time O( nlg(n) ), where n is the total number of elements in the array
 # Space O(1)
 def minimum_waiting_time_original(queries):
+    """
+
+    :param queries:
+    :return:
+    """
     queries.sort()
 
     total_waiting_time = 0
     for idx, duration in enumerate(queries):
-        queries_left = len(queries) - (idx - 1)
+        queries_left = len(queries) - (idx + 1)
         total_waiting_time += duration * queries_left
 
     return total_waiting_time
