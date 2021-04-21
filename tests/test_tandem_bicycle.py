@@ -33,3 +33,8 @@ tests = [([3, 6, 7, 2, 1], [5, 5, 3, 9, 2], True, 32),
 @pytest.mark.parametrize("blue_shirt_speeds, red_shirt_speeds, fastest, answer", tests)
 def test_tandem_bicycle(blue_shirt_speeds, red_shirt_speeds, fastest, answer):
     assert tandem_bicycle(red_shirt_speeds, blue_shirt_speeds, fastest) == answer
+
+
+@pytest.mark.parametrize("blue_shirt_speeds, red_shirt_speeds, fastest, answer", tests)
+def test_tandem_bicycle_original(blue_shirt_speeds, red_shirt_speeds, fastest, answer):
+    assert tandem_bicycle_original(red_shirt_speeds, blue_shirt_speeds, fastest) == answer
