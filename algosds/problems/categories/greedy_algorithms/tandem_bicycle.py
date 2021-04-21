@@ -57,7 +57,7 @@ def tandem_bicycle(red_shirt_speeds, blue_shirt_speeds, fastest):
 
 def tandem_bicycle_original(red_shirt_speeds, blue_shirt_speeds, fastest):
     """
-    
+
     :param red_shirt_speeds:
     :param blue_shirt_speeds:
     :param fastest:
