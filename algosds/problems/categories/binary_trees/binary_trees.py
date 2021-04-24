@@ -44,6 +44,22 @@ class BinaryTree:
 def branch_sums(root):
     """ My solution, recursive
 
+    This solutions searches the tree in a DFS manner
+
+    The time complicity is O(v) because for every node we perform only constant operations, this is because we know that
+    each node has at most 2 children, so the total calls are always 2. In the case of DPS for normal graph where there
+    is no constraint on the number of children a node can have, we have to add the O(e) to indicate that the number of
+    calls to the recursive function for each node depends on the number of children the node has. It could have 0 or a
+    very big number. That is why when applying DFS to this type of graph, the time complexity is O(v + e).
+
+    For the space complexity defined as O(v) it could also be said that the space complexity is O(lg(v)) or O(h) where
+    h = lg(v) = levels in the tree, nevertheless, in the words case scenario when there is a skewed tree that has only
+    one child on each node, hence having only one branch, the height is going to be the same as the total number of
+    nodes, that is why we say Space is O(v). This is regarding the call stalk.
+
+    Furthermore, when taking into account the array of branch sums, it is clear that the array is going to have the
+    same length as there are branches in the tree, which can be roughly v/2, which ends up being O(v).
+
     :param root: object of type BinaryTree representing the root node of the binary tree
     :return: array containing the sums of each branch in the binary tree
     """
@@ -56,7 +72,7 @@ def branch_sums(root):
 
 def compute_branch_sums(root, branch_sum, branch_sum_array):
     """
-    
+
     :param root:
     :param branch_sum:
     :param branch_sum_array:
@@ -81,6 +97,22 @@ def compute_branch_sums(root, branch_sum, branch_sum_array):
 # Space O(v)
 def branch_sums_original(root):
     """ Original solution, recursive
+
+    This solutions searches the tree in a DFS manner
+
+    The time complicity is O(v) because for every node we perform only constant operations, this is because we know that
+    each node has at most 2 children, so the total calls are always 2. In the case of DPS for normal graph where there
+    is no constraint on the number of children a node can have, we have to add the O(e) to indicate that the number of
+    calls to the recursive function for each node depends on the number of children the node has. It could have 0 or a
+    very big number. That is why when applying DFS to this type of graph, the time complexity is O(v + e).
+
+    For the space complexity defined as O(v) it could also be said that the space complexity is O(lg(v)) or O(h) where
+    h = lg(v) = levels in the tree, nevertheless, in the words case scenario when there is a skewed tree that has only
+    one child on each node, hence having only one branch, the height is going to be the same as the total number of
+    nodes, that is why we say Space is O(v). This is regarding the call stalk.
+
+    Furthermore, when taking into account the array of branch sums, it is clear that the array is going to have the
+    same length as there are branches in the tree, which can be roughly v/2, which ends up being O(v).
 
     :param root: object of type BinaryTree representing the root node of the binary tree
     :return: array containing the sums of each branch in the binary tree
