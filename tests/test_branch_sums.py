@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.categories.binary_trees.binary_trees import BinaryTree
+from algosds.problems.categories.binary_trees.branch_sums import BinaryTree
 
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')
