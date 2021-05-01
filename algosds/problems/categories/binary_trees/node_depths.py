@@ -47,6 +47,13 @@ def node_depths_recursive(root):
 
     This function recursively computes the sum of depths of nodes
 
+    The algorithm is O(h) space because it works in a depth firsts search manner and there are always going to be as
+    many calls in the call stack as the maximum number of levels in the binary tree, when the tree is balanced. Here h
+    is very similar to lg(n).
+
+    It is O(n) time because all nodes are visited only once. For more details on this, see the documentation for the
+    branch_sums.py and the depth_first_search.py problems.
+
     :param root: object of type BinaryTree that correspond to a node of the binary tree
     :return: integer representing the sum of depths of all nodes in the binary tree
     """
@@ -94,6 +101,13 @@ def node_depths_recursive_original(root, depth=0):
     If it is not the base case, then the recursive function for both the right and the left children. This has the same
     effect as my recursive function.
 
+    The algorithm is O(h) space because it works in a depth firsts search manner and there are always going to be as
+    many calls in the call stack as the maximum number of levels in the binary tree, when the tree is balanced. Here h
+    is very similar to lg(n).
+
+    It is O(n) time because all nodes are visited only once. For more details on this, see the documentation for the
+    branch_sums.py and the depth_first_search.py problems.
+
     :param root: object of type BinaryTree that correspond to a node of the binary tree
     :param depth:
     :return: integer representing the sum of depths of all nodes in the binary tree
@@ -117,6 +131,24 @@ def node_depths_while(root):
     The stack used for keeping track of the visited nodes has a dictionary for each node, where the dictionary contains
     the node object of type BinaryTree and the nodes depth. This depth is being updated for children nodes by taking as
     starting point the root nod eof depth 0 and then adding one unit for each level.
+
+    The algorithm is O(h) space because when taking a look at how many nodes are in the stack at the same time, it is
+    clear that there are roughly as many nodes as the maximum number of levels (right) in the binary tree, when the tree
+    is balanced. Here the height looks very similar to log(n).
+
+    For the example problem the stack will look like this in every iteration.
+
+    []
+    [1]
+    [3, 2]
+    [3, 5, 4]
+    [3, 5, 9, 8]
+    [3, 5, 9]
+    [3, 5]
+    [3]
+    []
+
+    It is O(n) time because all nodes are visited only once.
 
     :param root: object of type BinaryTree that correspond to a node of the binary tree
     :return: integer representing the sum of depths of all nodes in the binary tree
