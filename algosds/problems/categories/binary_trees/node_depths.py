@@ -43,10 +43,10 @@ class BinaryTree:
 # Time O(n), where n is the number of vertices (nodes) in the tree
 # Space O(h),where h is the height of the tree
 def node_depths_recursive(root):
-    """
+    """ My recursive solution
 
-    :param root:
-    :return:
+    :param root: object of type BinaryTree that correspond to a node of the binary tree
+    :return: integer representing the sum of depths of all nodes in the binary tree
     """
     depth_sums = 0
     depth_sums = sum_node_depths(root, depth_sums, 0)
@@ -54,7 +54,7 @@ def node_depths_recursive(root):
 
 
 def sum_node_depths(node, current_sum, level):
-    """
+    """ Helper function for my recursive solution
 
     :param node:
     :param current_sum:
@@ -77,11 +77,11 @@ def sum_node_depths(node, current_sum, level):
 # Time O(n), where n is the number of vertices (nodes) in the tree
 # Space O(h),where h is the height of the tree
 def node_depths_recursive_original(root, depth=0):
-    """
+    """ Original recursive solution
 
-    :param root:
+    :param root: object of type BinaryTree that correspond to a node of the binary tree
     :param depth:
-    :return:
+    :return: integer representing the sum of depths of all nodes in the binary tree
     """
     if root is None:
         return 0
@@ -93,10 +93,10 @@ def node_depths_recursive_original(root, depth=0):
 # Time O(n), where n is the number of vertices (nodes) in the tree
 # Space O(h),where h is the height of the tree
 def node_depths_while(root):
-    """
-    
-    :param root:
-    :return:
+    """ Original iterative solution using while
+
+    :param root: object of type BinaryTree that correspond to a node of the binary tree
+    :return: integer representing the sum of depths of all nodes in the binary tree
     """
     sum_of_depths = 0
     stack = [{"node": root, "depth": 0}]
