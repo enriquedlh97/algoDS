@@ -45,6 +45,8 @@ class BinaryTree:
 def node_depths_recursive(root):
     """ My recursive solution
 
+    This function recursively computes the sum of depths of nodes
+
     :param root: object of type BinaryTree that correspond to a node of the binary tree
     :return: integer representing the sum of depths of all nodes in the binary tree
     """
@@ -56,11 +58,18 @@ def node_depths_recursive(root):
 def sum_node_depths(node, current_sum, level):
     """ Helper function for my recursive solution
 
-    :param node:
-    :param current_sum:
-    :param level:
-    :return:
+    This function first checks for the base case, which is when a node (object of type BinaryTree) is None. When it is
+    None, it means the its parent had no child.
+
+    On each node the sum of depths is updated by adding the value of the current node's depth. Then, the recursive
+    function is called for both the right and the left children.
+
+    :param node: object of type BinaryTree that correspond to a node of the binary tree
+    :param current_sum: integer representing the current sum of depths of nodes
+    :param level: integer representing the current level in the tree for the node at hand
+    :return: integer representing the updated current sum of depths of nodes
     """
+    # Base case
     if node is None:
         return current_sum
 
@@ -79,10 +88,17 @@ def sum_node_depths(node, current_sum, level):
 def node_depths_recursive_original(root, depth=0):
     """ Original recursive solution
 
+    This function is almost the same as my recursive solution. It first checks for the base case, which is when a node
+    (object of type BinaryTree) is None. When it is None, it means the its parent had no child.
+
+    If it is not the base case, then the recursive function for both the right and the left children. This has the same
+    effect as my recursive function.
+
     :param root: object of type BinaryTree that correspond to a node of the binary tree
     :param depth:
     :return: integer representing the sum of depths of all nodes in the binary tree
     """
+    # Base case
     if root is None:
         return 0
 
@@ -94,6 +110,13 @@ def node_depths_recursive_original(root, depth=0):
 # Space O(h),where h is the height of the tree
 def node_depths_while(root):
     """ Original iterative solution using while
+
+    This function has a global variable called sum_of_depths to keep track of the sum of depths of all nodes. It then
+    uses a stack to keep track of the visited nodes. The nodes are visited in a depth first search manner.
+
+    The stack used for keeping track of the visited nodes has a dictionary for each node, where the dictionary contains
+    the node object of type BinaryTree and the nodes depth. This depth is being updated for children nodes by taking as
+    starting point the root nod eof depth 0 and then adding one unit for each level.
 
     :param root: object of type BinaryTree that correspond to a node of the binary tree
     :return: integer representing the sum of depths of all nodes in the binary tree
