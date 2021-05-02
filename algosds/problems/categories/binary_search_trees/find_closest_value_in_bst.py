@@ -42,6 +42,14 @@ class BST:
 # Space O(h), where h is the height of the tree and is the same as h = O(lg(n)). In the worst case
 # 			the space is O(n) fr the same reason as in the time complexity
 def find_closest_value_in_bst_recursive(tree, target, value=float('inf'), diff=float('inf')):
+    """
+
+    :param tree:
+    :param target:
+    :param value:
+    :param diff:
+    :return:
+    """
     #  Base case
     if tree is None:
         return value
@@ -56,6 +64,14 @@ def find_closest_value_in_bst_recursive(tree, target, value=float('inf'), diff=f
 
 
 def abs_diff(target, tree, value, diff):
+    """
+
+    :param target:
+    :param tree:
+    :param value:
+    :param diff:
+    :return:
+    """
     if abs(target - tree.value) < diff:
         value = tree.value
         diff = abs(target - tree.value)
@@ -69,6 +85,12 @@ def abs_diff(target, tree, value, diff):
 # Space O(h), where h is the height of the tree and is the same as h = O(lg(n)). In the worst case
 # 			the space is O(n) fr the same reason as in the time complexity
 def find_closest_value_in_bst_recursive_clean(tree, target):
+    """
+
+    :param tree:
+    :param target:
+    :return:
+    """
     closest_value = {'value': None, 'diff': float('inf')}
     # print(closest_value)
     closest_value = get_value(tree, target, closest_value)
@@ -77,6 +99,13 @@ def find_closest_value_in_bst_recursive_clean(tree, target):
 
 
 def get_value(tree, target, closest_value):
+    """
+
+    :param tree:
+    :param target:
+    :param closest_value:
+    :return:
+    """
     #  Base case
     if tree is None:
         return closest_value
@@ -95,6 +124,12 @@ def get_value(tree, target, closest_value):
 #			when the tree is skewed and has, for example, only left sides (single chain)
 # Space O(1)
 def find_closest_value_in_bst_iterative(tree, target):
+    """
+
+    :param tree:
+    :param target:
+    :return:
+    """
     closest_value = {'value': None, 'diff': float('inf')}
 
     while tree is not None:
@@ -115,6 +150,12 @@ def find_closest_value_in_bst_iterative(tree, target):
 #			when the tree is skewed and has, for example, only left sides (single chain)
 # Space O(1)
 def find_closest_value_in_bst_iterative_clean(tree, target):
+    """
+
+    :param tree:
+    :param target:
+    :return:
+    """
     closest_value = {'value': None, 'diff': float('inf')}
 
     while tree is not None:
@@ -154,10 +195,23 @@ def update_closest(closest_value, target, tree):
 # Space O(h), where h is the height of the tree and is the same as h = O(lg(n)). In the worst case
 # 			the space is O(n) fr the same reason as in the time complexity
 def find_closest_value_in_bst_recursive_original(tree, target):
+    """
+
+    :param tree:
+    :param target:
+    :return:
+    """
     return find_closest_value_recursive_original_helper(tree, target, tree.value)
 
 
 def find_closest_value_recursive_original_helper(tree, target, closest):
+    """
+
+    :param tree:
+    :param target:
+    :param closest:
+    :return:
+    """
     if tree is None:
         return closest
     if abs(target - closest) > abs(target - tree.value):
@@ -171,10 +225,23 @@ def find_closest_value_recursive_original_helper(tree, target, closest):
 
 
 def find_closest_value_in_bst_iterative_original(tree, target):
+    """
+
+    :param tree:
+    :param target:
+    :return:
+    """
     return find_closest_value_recursive_original_helper(tree, target, tree.value)
 
 
 def find_closest_value_iterative_original_helper(tree, target, closest):
+    """
+    
+    :param tree:
+    :param target:
+    :param closest:
+    :return:
+    """
     current_node = tree
 
     while current_node is not None:
