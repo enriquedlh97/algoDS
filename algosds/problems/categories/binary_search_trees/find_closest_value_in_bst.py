@@ -161,8 +161,22 @@ def get_value(tree, target, closest_value):
 # when the tree is skewed and has, for example, only left sides (single chain)
 
 # Space O(1)
-def find_closest_value_in_bst_iterative(tree, target):
-    """ My iterative solution
+def find_closest_value_in_bst_iterative_clean(tree, target):
+    """ My iterative clean solution
+
+    This solution solves the problem iteratively. It uses a while loop to check for the base case for when the current
+    node is None.
+
+    It is clean because it does not perform the check to see if the target is the same as the current node. It basically
+    waits until the current nod eis None and then jst returns the closest value.
+
+    Then, the first thin on every iteration is to update the closest value to the target based on the current node.
+
+    Then it checks if the target is smaller or greater than the current node and updates the current node to the left or
+    right child respectively.
+
+    The time complexity is the same as the previous solutions, the space complexity is O(1) because there is no call
+    stack.
 
     :param tree: object of type BST representing a binary tree
     :param target: integer representing the target value to be searched for in the nodes of the bst
@@ -184,15 +198,18 @@ def find_closest_value_in_bst_iterative(tree, target):
 
 
 # Time O(h) average case, where h is the the height of the tree which is h = lg(n) where n is the
-#			number of node sin the tree, hence average case is O(lg(n)). The worst case is O(n),
-#			when the tree is skewed and has, for example, only left sides (single chain)
+# number of node sin the tree, hence average case is O(lg(n)). The worst case is O(n),
+# when the tree is skewed and has, for example, only left sides (single chain)
 # Space O(1)
-def find_closest_value_in_bst_iterative_clean(tree, target):
-    """
+def find_closest_value_in_bst_iterative(tree, target):
+    """ My iterative solution
 
-    :param tree:
-    :param target:
-    :return:
+    This solution is the same as the previous one, the only difference is that it checks to see if the current node is
+    the same as the target. This makes the solution a little more efficient but does not really affect the complexity.
+
+    :param tree: object of type BST representing a binary tree
+    :param target: integer representing the target value to be searched for in the nodes of the bst
+    :return: integer value corresponding to the closest node value to the target
     """
     closest_value = {'value': None, 'diff': float('inf')}
 
@@ -215,10 +232,11 @@ def find_closest_value_in_bst_iterative_clean(tree, target):
 def update_closest(closest_value, target, tree):
     """ Helper function to update closest value to target for get_value() in recursive clean and iterative solutions
 
-    :param closest_value:
-    :param target:
-    :param tree:
-    :return:
+    :param closest_value: dictionary containing the value of the closest node to the target and their difference
+    :param target: integer representing the target value to be searched for in the nodes of the bst
+    :param tree: object of type BST representing a binary tree
+    :return: integer value corresponding to the closest node value to the target between the previous value and the
+    current one
     """
     if abs(tree.value - target) < closest_value['diff']:
         closest_value['value'] = tree.value
@@ -228,27 +246,32 @@ def update_closest(closest_value, target, tree):
 
 
 # Time O(h) average case, where h is the the height of the tree which is h = lg(n) where n is the
-#			number of node sin the tree, hence average case is O(lg(n)). The worst case is O(n),
-#			when the tree is skewed and has, for example, only left sides (single chain)
-# Space O(h), where h is the height of the tree and is the same as h = O(lg(n)). In the worst case
-# 			the space is O(n) fr the same reason as in the time complexity
-def find_closest_value_in_bst_recursive_original(tree, target):
-    """
+# number of node sin the tree, hence average case is O(lg(n)). The worst case is O(n),
+# when the tree is skewed and has, for example, only left sides (single chain)
 
-    :param tree:
-    :param target:
-    :return:
+# Space O(h), where h is the height of the tree and is the same as h = O(lg(n)). In the worst case
+# the space is O(n) fr the same reason as in the time complexity
+def find_closest_value_in_bst_recursive_original(tree, target):
+    """ Recursive original solution
+
+    This solution is the same as my recursive clean solution
+
+    :param tree: object of type BST representing a binary tree
+    :param target: integer representing the target value to be searched for in the nodes of the bst
+    :return: integer value corresponding to the closest node value to the target
     """
     return find_closest_value_recursive_original_helper(tree, target, tree.value)
 
 
 def find_closest_value_recursive_original_helper(tree, target, closest):
-    """
+    """ Helper function for recursive original solution
 
-    :param tree:
-    :param target:
-    :param closest:
-    :return:
+    This helper function takes care of all the logic
+
+    :param tree: object of type BST representing a binary tree
+    :param target: integer representing the target value to be searched for in the nodes of the bst
+    :param closest: integer representing the value of the current closest node to the target
+    :return: integer value corresponding to the closest node value to the target
     """
     if tree is None:
         return closest
@@ -263,22 +286,26 @@ def find_closest_value_recursive_original_helper(tree, target, closest):
 
 
 def find_closest_value_in_bst_iterative_original(tree, target):
-    """
+    """ Original iterative solution
 
-    :param tree:
-    :param target:
-    :return:
+    This is the same as my iterative clean solution
+
+    :param tree: object of type BST representing a binary tree
+    :param target: integer representing the target value to be searched for in the nodes of the bst
+    :return: integer value corresponding to the closest node value to the target
     """
     return find_closest_value_recursive_original_helper(tree, target, tree.value)
 
 
 def find_closest_value_iterative_original_helper(tree, target, closest):
-    """
+    """ Helper function for original iterate solution
+
+    This helper function takes care of the logic.
     
-    :param tree:
-    :param target:
-    :param closest:
-    :return:
+    :param tree: object of type BST representing a binary tree
+    :param target: integer representing the target value to be searched for in the nodes of the bst
+    :param closest: integer representing the value of the current closest node to the target
+    :return: integer value corresponding to the closest node value to the target
     """
     current_node = tree
 
