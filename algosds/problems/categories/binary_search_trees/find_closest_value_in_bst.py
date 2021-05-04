@@ -37,18 +37,42 @@ class BST:
 
 
 # Time O(h) average case, where h is the the height of the tree which is h = lg(n) where n is the
-#			number of node sin the tree, hence average case is O(lg(n)). The worst case is O(n),
-#			when the tree is skewed and has, for example, only left sides (single chain)
-# Space O(h), where h is the height of the tree and is the same as h = O(lg(n)). In the worst case
-# 			the space is O(n) fr the same reason as in the time complexity
-def find_closest_value_in_bst_recursive(tree, target, value=float('inf'), diff=float('inf')):
-    """
+# number of nodes in the tree, hence average case is O(lg(n)). The worst case is O(n),
+# when the tree is skewed and has, for example, only left sides (single chain)
 
-    :param tree:
-    :param target:
-    :param value:
-    :param diff:
-    :return:
+# Space O(h), where h is the height of the tree and is the same as h = O(lg(n)). In the worst case
+# the space is O(n) for the same reason as in the time complexity
+def find_closest_value_in_bst_recursive(tree, target, value=float('inf'), diff=float('inf')):
+    """ My recursive solution
+
+    This solution keeps track of the closest value to the target and its difference.
+
+    This solution works by everytime performing 3 checks. First it checks if the target is equal to the current node,
+    this is to improve performance but it does not really affect the complexity of the algorithm. When it is, it return
+    the value of the current node. The second and third checks are if the target is less than te current node or bigger
+    than the current node. In either case, first the closest value and difference are updated, this is to see if the
+    current node should be the new closest value. This is computed by taking the difference of current node and target
+    comparing it to the difference of the previous closest value.
+
+    After this has been done, the function is called again recursively and passes the left child or right child
+    depending on if the target was smaller or bigger than the current node.
+
+    The algorithm ends when the current node is None or when the target has the same value as the current node. This
+    last second check is not necessary and does not affect the overall complexity but it does yield more efficiency.
+
+    The worst case time complexity if O(log(n)), where n is the number of node sin the tree, this would be when the tree
+    has only one branch. The average case time complexity is O(h) where h is the height of the tree given by lg(n), so
+    essentially, the average case is O(lg(n)). This is because, at most, only one node at each level is going to be
+    visited and, roughly half of the nodes are discarded on every step.
+
+    The space complexity would be the same for both the average case and the worst case. This is because there are going
+    to be at most one function call in the call stack for every level in the tree.
+
+    :param tree: object of type BST representing a binary tree
+    :param target: integer representing the target value to be searched for in the nodes of the bst
+    :param value: integer representing the value of the current closest node to the target
+    :param diff: integer representing the difference between the closest node to the target an the target itself
+    :return: integer value corresponding to the closest node value to the target
     """
     #  Base case
     if tree is None:
@@ -64,13 +88,19 @@ def find_closest_value_in_bst_recursive(tree, target, value=float('inf'), diff=f
 
 
 def abs_diff(target, tree, value, diff):
-    """
+    """ Helper function for my recursive solution
 
-    :param target:
-    :param tree:
-    :param value:
-    :param diff:
-    :return:
+    This function is for updating the current closest value to the target. To do this it computes the difference between
+    the current tree value and the target and compares it to the difference between the current closest value to the
+    target and the target itself. The value corresponding to the smallest difference is kept as the new closest value to
+    the target.
+
+    :param tree: object of type BST representing a binary tree
+    :param target: integer representing the target value to be searched for in the nodes of the bst
+    :param value: integer representing the value of the current closest node to the target
+    :param diff: integer representing the difference between the closest node to the target an the target itself
+    :return: integer value corresponding to the closest node value to the target between the previous value and the
+    current one
     """
     if abs(target - tree.value) < diff:
         value = tree.value
@@ -80,16 +110,21 @@ def abs_diff(target, tree, value, diff):
 
 
 # Time O(h) average case, where h is the the height of the tree which is h = lg(n) where n is the
-#			number of node sin the tree, hence average case is O(lg(n)). The worst case is O(n),
-#			when the tree is skewed and has, for example, only left sides (single chain)
-# Space O(h), where h is the height of the tree and is the same as h = O(lg(n)). In the worst case
-# 			the space is O(n) fr the same reason as in the time complexity
-def find_closest_value_in_bst_recursive_clean(tree, target):
-    """
+# number of node sin the tree, hence average case is O(lg(n)). The worst case is O(n),
+# when the tree is skewed and has, for example, only left sides (single chain)
 
-    :param tree:
-    :param target:
-    :return:
+# Space O(h), where h is the height of the tree and is the same as h = O(lg(n)). In the worst case
+# the space is O(n) fr the same reason as in the time complexity
+def find_closest_value_in_bst_recursive_clean(tree, target):
+    """ My clean recursive solution
+
+    This function is pretty much the same as the previous one (my recursive solution), the complexity is the same. There is just a small
+    difference in the implementation to make the code cleaner. In this case the check for when the current node value is
+    the same as the target is omitted. Everything else is pretty much the same.
+
+    :param tree: object of type BST representing a binary tree
+    :param target: integer representing the target value to be searched for in the nodes of the bst
+    :return: integer value corresponding to the closest node value to the target
     """
     closest_value = {'value': None, 'diff': float('inf')}
     # print(closest_value)
@@ -99,12 +134,14 @@ def find_closest_value_in_bst_recursive_clean(tree, target):
 
 
 def get_value(tree, target, closest_value):
-    """
+    """ Helper function for my recursive clean solution
 
-    :param tree:
-    :param target:
-    :param closest_value:
-    :return:
+    This function is the helper for my recursive clean solution and it takes care of all the logic.
+
+    :param tree: object of type BST representing a binary tree
+    :param target: integer representing the target value to be searched for in the nodes of the bst
+    :param closest_value: integer representing the value of the current closest node to the target
+    :return: integer value corresponding to the closest node value to the target
     """
     #  Base case
     if tree is None:
@@ -120,15 +157,16 @@ def get_value(tree, target, closest_value):
 
 
 # Time O(h) average case, where h is the the height of the tree which is h = lg(n) where n is the
-#			number of node sin the tree, hence average case is O(lg(n)). The worst case is O(n),
-#			when the tree is skewed and has, for example, only left sides (single chain)
+# number of node sin the tree, hence average case is O(lg(n)). The worst case is O(n),
+# when the tree is skewed and has, for example, only left sides (single chain)
+
 # Space O(1)
 def find_closest_value_in_bst_iterative(tree, target):
-    """
+    """ My iterative solution
 
-    :param tree:
-    :param target:
-    :return:
+    :param tree: object of type BST representing a binary tree
+    :param target: integer representing the target value to be searched for in the nodes of the bst
+    :return: integer value corresponding to the closest node value to the target
     """
     closest_value = {'value': None, 'diff': float('inf')}
 
