@@ -69,8 +69,17 @@ class BST:
         self.left = None
         self.right = None
 
+    # Time O(h) average case, where h is the the height of the tree which is h = lg(n) where n is the
+    # number of nodes in the tree, hence average case is O(lg(n)). The worst case is O(n),
+    # when the tree is skewed and has, for example, only left sides (single chain)
+
+    # Space O(1)
     def insert(self, value):
         """ Method for inserting nodes in BST
+
+        This method works iteratively, it receives the value to be inserted in the BST. Then, it compares it with the
+        root node following the corresponding path until it finds a leaf node (which is when a node is None). It is then
+        set as the value of the corresponding child node of the leaf node and its children are initialized as None.
 
         :param value: int value corresponding to the value of the node to be inserted in the BST
         :return: self, corresponding to the root value of the BST
@@ -79,15 +88,15 @@ class BST:
         node = self
         parent = None  # Keeps track of parent node, is initialized as None for root node
 
-        while node is not None:
+        while node is not None:  # Base case, for when the leaf node is reached
 
             if value < node.value:
-                left = True
+                left = True  # Indicates that the value to be inserted should go on the left of the current node
                 parent = node
                 node = node.left
 
             elif value >= node.value:
-                left = False
+                left = False  # Indicates that the value to be inserted should go on the right of the current node
                 parent = node
                 node = node.right
 
@@ -98,8 +107,17 @@ class BST:
 
         return self
 
+    # Time O(h) average case, where h is the the height of the tree which is h = lg(n) where n is the
+    # number of nodes in the tree, hence average case is O(lg(n)). The worst case is O(n),
+    # when the tree is skewed and has, for example, only left sides (single chain)
+
+    # Space O(1)
     def contains(self, value):
         """ Method for checking if a value is in a BST
+
+        This methods checks if a value is within the BST. To check for this it calls a helper method "search". From that
+        search it receives 3 values, but the only one really needed is the last one, the "found" value, which is True if
+        the value was found in the BST and False otherwise.
 
         :param value: integer value corresponding to the value to be searched in the BST
         :return: True if the value is in the BST; False otherwise
@@ -109,8 +127,26 @@ class BST:
 
         return found
 
+    # Time O(h) average case, where h is the the height of the tree which is h = lg(n) where n is the
+    # number of nodes in the tree, hence average case is O(lg(n)). The worst case is O(n),
+    # when the tree is skewed and has, for example, only left sides (single chain)
+
+    # Space O(1)
     def search(self, value):
         """ Helper method for contains method. Used for actually searching for the value in the BST
+
+        This is the helper method for the contains method. It is in charge of the actual logic of searching for the
+        value within the BST.
+
+        It traverses the tree following the path indicated by comparisons with nodes starting from the root node. The
+        procedure ends when it either finds the node with value the same as the searched value or when a None value is
+        found, meaning that a leaf node is reached and the searched value is not in the BST.
+
+        This method returns an element of name "node" which is a BST object containing the node element if it was found.
+        When the value was not found in the BST the "node" element is returned with a value of None. The second element
+        that the method returns is "parent", which is a BST object corresponding to the element of the "node" element.
+        When the node is not in the BST, the "parent" element is returned with a value of None. The las element
+        returned by this method is a boolean value which is True if the value was found in the BST or False otherwise.
 
         :param value: integer value corresponding to the value to be searched in the BST
         :return: node, parent, bool: Three elements are returned. The "bool" element is True if the value was found in
@@ -141,9 +177,25 @@ class BST:
     def remove(self, value, exclude_parent=False):
         """ Method for removing a node form a BST
 
+        This method is used for removing nodes from the BST. First the method checks if the parent node is going to be
+        considered for the removal process. Then, it calls the "search" method which returns the "node", "parent" and
+        "found" elements. When the parent is excluded from the search, the returned "parent" element is ignored because
+        it is previously set as the current element "self".
+
+        Then, depending on the structure of the "node" element to be removed three different cases can be executed, the
+        first case is when the Node to be removed has no children (leaf node), the second case is when the Node to be
+        removed has 2 children, and the third case is when the Node to be removed has only 1 child. Each case is explain
+        below. 
+
+        Case 1: Node to be removed has no children (leaf node)
+
+        Case 2: Node to be removed has 2 children
+
+        Case3 : Node to be removed has only 1 child
+
         :param value: integer value representing the node to be removed
-        :param exclude_parent: optional boolean argument. 
-        :return:
+        :param exclude_parent: optional boolean argument.
+        :return: self, corresponding to the root value of the BST
         """
 
         if not exclude_parent:
@@ -241,6 +293,11 @@ class BST:
 
     @staticmethod
     def find_smallest(node):
+        """ Helper static method to find the smallest value in a BST
+
+        :param node: BST object
+        :return: integer value corresponding to the to the value of the smallest node in the BST
+        """
         smallest = node.value
 
         while node.left is not None:

@@ -60,7 +60,7 @@ def find_closest_value_in_bst_recursive(tree, target, value=float('inf'), diff=f
     The algorithm ends when the current node is None or when the target has the same value as the current node. This
     last second check is not necessary and does not affect the overall complexity but it does yield more efficiency.
 
-    The worst case time complexity if O(log(n)), where n is the number of node sin the tree, this would be when the tree
+    The worst case time complexity if O(log(n)), where n is the number of nodes in the tree, this would be when the tree
     has only one branch. The average case time complexity is O(h) where h is the height of the tree given by lg(n), so
     essentially, the average case is O(lg(n)). This is because, at most, only one node at each level is going to be
     visited and, roughly half of the nodes are discarded on every step.
