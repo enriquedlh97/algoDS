@@ -184,8 +184,7 @@ class BST:
 
         Then, depending on the structure of the "node" element to be removed three different cases can be executed, the
         first case is when the Node to be removed has no children (leaf node), the second case is when the Node to be
-        removed has 2 children, and the third case is when the Node to be removed has only 1 child. Each case is explain
-        below. 
+        removed has 2 children, and the third case is when the Node to be removed has only 1 child.
 
         Case 1: Node to be removed has no children (leaf node)
 
@@ -239,7 +238,11 @@ class BST:
             elif node.left is not None and node.right is not None:
                 # print("Case 2")
                 # Find smallest node from right branch
+                # When a node with 2 children is to be removed, then another node has to replace its position. The node
+                # That is going to replace the position of the removed node is the smallest node from the right branch.
+                # That is why the mallets node is searched for and kept track of.
                 smallest = node.find_smallest(node.right)
+
                 # Remove smallest node from right branch
                 # We want to exclude the parent in the search when the parent has the same value as the smallest value
                 # in its right branch. We do this because if these values are both the same, when we call the remove
@@ -263,7 +266,7 @@ class BST:
             # Case 3: 1 Child
             else:
                 # print("Case 3")
-                if parent is not None:
+                if parent is not None:  # Makes sure the node is not the root node
                     if parent.left is not None and parent.left.value == value:
                         # Removes node from its parent
                         if node.left is not None:
@@ -277,7 +280,7 @@ class BST:
                         elif node.right is not None:
                             parent.right = node.right
 
-                else:
+                else:  # Executes when the node to be removed is a root node
                     if node.left is not None:
                         node = node.left
                     elif node.right is not None:
@@ -291,9 +294,16 @@ class BST:
         else:  # Node to be removed is not in bst, return bst as it is
             return self
 
+    # Time O(h) average case, where h is the the height of the tree which is h = lg(n) where n is the
+    # number of nodes in the tree, hence average case is O(lg(n)). The worst case is O(n),
+    # when the tree is skewed and has, for example, only left sides (single chain)
+
+    # Space O(1)
     @staticmethod
     def find_smallest(node):
         """ Helper static method to find the smallest value in a BST
+
+        Iteratively searches for the smallest node in a BST
 
         :param node: BST object
         :return: integer value corresponding to the to the value of the smallest node in the BST
