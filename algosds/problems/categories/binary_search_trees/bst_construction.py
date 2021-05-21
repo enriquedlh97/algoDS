@@ -58,11 +58,23 @@ Sample usage:
 
 class BST:
     def __init__(self, value):
+        """ Binary Search Tree
+
+        This is the main class for the binary search tree. Every node is initialized with a value (required as
+        parameter) and with left and right nodes as None.
+
+        :param value: int value corresponding to the value of the node
+        """
         self.value = value
         self.left = None
         self.right = None
 
     def insert(self, value):
+        """ Method for inserting nodes in BST
+
+        :param value: int value corresponding to the value of the node to be inserted in the BST
+        :return: self, corresponding to the root value of the BST
+        """
 
         node = self
         parent = None  # Keeps track of parent node, is initialized as None for root node
@@ -87,12 +99,27 @@ class BST:
         return self
 
     def contains(self, value):
+        """ Method for checking if a value is in a BST
+
+        :param value: integer value corresponding to the value to be searched in the BST
+        :return: True if the value is in the BST; False otherwise
+        """
 
         node, parent, found = self.search(value)
 
         return found
 
     def search(self, value):
+        """ Helper method for contains method. Used for actually searching for the value in the BST
+
+        :param value: integer value corresponding to the value to be searched in the BST
+        :return: node, parent, bool: Three elements are returned. The "bool" element is True if the value was found in
+                 the BST; False otherwise. The "node" element is a BST object corresponding to the searched node (only
+                 if it was found), if it was not found, the node element has a value of None. Parent is a BST object
+                 corresponding to the parent node of the searched node. If the searched node was not found, then
+                 parent = None. If the searched node was found, then one of its children points to the searched node. If
+                 the searched node corresponds to the root nod eof the BST, then the parent = None.
+        """
         node = self
         parent = None
 
@@ -112,6 +139,12 @@ class BST:
         return node, parent, False
 
     def remove(self, value, exclude_parent=False):
+        """ Method for removing a node form a BST
+
+        :param value: integer value representing the node to be removed
+        :param exclude_parent: optional boolean argument. 
+        :return:
+        """
 
         if not exclude_parent:
             node, parent, found = self.search(value)
