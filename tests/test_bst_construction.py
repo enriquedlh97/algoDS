@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from algosds.problems.categories.binary_search_trees.bst_construction import BST
+from algosds.problems.categories.binary_search_trees.bst_construction import BST, BST_recursive, BST_iterative
 
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')
