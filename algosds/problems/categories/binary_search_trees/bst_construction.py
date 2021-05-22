@@ -323,6 +323,7 @@ class BST:
 
         return smallest
 
+
 # Original BST iterative implementation. The time and space complexity shown below is the same for all methods
 # Time O(h) average case, where h is the the height of the tree which is h = lg(n) where n is the
 # number of nodes in the tree, hence average case is O(lg(n)). The worst case is O(n),
@@ -342,10 +343,10 @@ class BST_iterative:
         currentNode = self
         while True:
             if value < currentNode.value:
-                if currentNode.left is None:
-                    currentNode.left = BST_iterative(value)
+                if currentNode.left is None:  # Checks if we are at the end of branch
+                    currentNode.left = BST_iterative(value)  # Inserts value
                     break
-                else:
+                else:  # Checks if there is still a left node to explore
                     currentNode = currentNode.left
             else:
                 if currentNode.right is None:
@@ -361,12 +362,12 @@ class BST_iterative:
         currentNode = self
         while currentNode is not None:
             if value < currentNode.value:
-                currentNode = currentNode.left
+                currentNode = currentNode.left  # Explore left branch
             elif value > currentNode.value:
-                currentNode = currentNode.right
-            else:
+                currentNode = currentNode.right  # Explore right brnach
+            else:  # This means that the node has been found
                 return True
-        return False
+        return False  # The node was node found
 
     # Average: O(lg(n)) time  | O(1) space
     # Worst: O(n) time | O(1) space
@@ -374,38 +375,127 @@ class BST_iterative:
         currentNode = self
         # Finds the node to be deleted
         while currentNode is not None:
-             if value < currentNode.value:
-                 parentNode = currentNode
-                 currentNode = currentNode.left
-             elif value > currentNode.value:
-                 parentNode = currentNode
-                 currentNode = currentNode.right
-             else: # Executes when node to be removed has been found
-                 if currentNode.left is not None and currentNode.right is not None:
-                     currentNode.value = currentNode.right.getMinValue()
-                     currentNode.right.remove(currentNode.value, currentNode)
-                 elif parentNode is None:
-                     if currentNode.left is not None:
-                         currentNode.value = currentNode.left.value
-                         currentNode.right = currentNode.left.right
-                         currentNode.left = currentNode.left.left
-                     elif currentNode.right is not None:
-                         currentNode.value = currentNode.right.getMinValue
-                         currentNode.left = currentNode.right.left
-                         currentNode.right = currentNode.right.right
-                     else:
-                         # This is a single-node tree; do nothing
-                         pass
-                 elif parentNode.left == currentNode:
-                     parentNode.left = currentNode.left if currentNode.left is not None else currentNode.right
-                 elif parentNode.right == currentNode:
-                     parentNode.right = currentNode.left if currentNode.left is not None else currentNode.right
-                 break
+            if value < currentNode.value:
+                parentNode = currentNode  # Keep track of parent
+                currentNode = currentNode.left  # Next node to explore
+            elif value > currentNode.value:
+                parentNode = currentNode  # Keep track of parent
+                currentNode = currentNode.right  # Next node to explore
+            else:  # Executes when node to be removed has been found
+                # First Case, when node to remove has 2 children nodes
+                if currentNode.left is not None and currentNode.right is not None:
+                    # Finds smallest value in right subtree of node to be removed. And update node to be removes with
+                    # value of smallest value of right subtree.
+                    currentNode.value = currentNode.right.getMinValue()
+                    # Remove the smallest value of right subtree
+                    currentNode.right.remove(currentNode.value, currentNode)
+                # Case 2, when we are removing the root node
+                elif parentNode is None:
+                    # Checks which child is the one that exists
+                    if currentNode.left is not None:
+                        currentNode.value = currentNode.left.value
+                        currentNode.right = currentNode.left.right
+                        currentNode.left = currentNode.left.left
+                    elif currentNode.right is not None:
+                        currentNode.value = currentNode.right.getMinValue
+                        currentNode.left = currentNode.right.left
+                        currentNode.right = currentNode.right.right
+                    else:
+                        # This is a single-node tree; do nothing
+                        pass
+                # Case 3, removing node with one child or no child. This case is covered by the next 2 elif statements
+                elif parentNode.left == currentNode:
+                    parentNode.left = currentNode.left if currentNode.left is not None else currentNode.right
+                elif parentNode.right == currentNode:
+                    parentNode.right = currentNode.left if currentNode.left is not None else currentNode.right
+                break
         return self
-
 
     def getMinValue(self):
         currentNode = self
         while currentNode.left is not None:
             currentNode = currentNode.left
-        return  currentNode.value
+        return currentNode.value
+
+
+# Original BST recursive implementation. The time and space complexity shown below is the same for all methods
+# Time O(h) average case, where h is the the height of the tree which is h = lg(n) where n is the
+# number of nodes in the tree, hence average case is O(lg(n)). The worst case is O(n),
+# when the tree is skewed and has, for example, only left sides (single chain)
+
+# Space O(h), where h is the height of the tree and is the same as h = O(lg(n)). In the worst case
+# the space is O(n) for the same reason as in the time complexity
+# This class is not documented because the documentation would be pretty much the same as my BST implementation
+class BST_recursive:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    # Average: O(lg(n)) time | O(lg(n)) space
+    # Worst: O(n) time | O(n) space
+    def insert(self, value):
+        if value < self.value:
+            if self.left is None:
+                self.left = BST_recursive(value)
+            else:
+                self.insert(value)  # Recursive part
+        else:
+            if self.right is None:
+                self.right = BST_recursive(value)
+            else:
+                self.right.insert(value)
+        return  self
+
+    # Average: O(lg(n)) time | O(lg(n)) space
+    # Worst: O(n) time | O(n) space
+    def contains(self, value):
+        if value < self.value:
+            if self.left is None:
+                return False  # Searched value was not found
+            else:
+                return self.left.contains(value)  # Explore further in left subtree
+        elif value > self.value:
+            if self.right is None:
+                return False  # Searched value was not found
+            else:
+                return self.right.contains(value)
+        else:
+            return True  # Searched value was found
+
+    # Average: O(lg(n)) time | O(lg(n)) space
+    # Worst: O(n) time | O(n) space
+    def remove(self, value, parent=None):
+        if value < self.value:  # Search for value to me removed in left subtree
+            if self.left is not None:
+                self.left.remove(value, self)
+        elif value > self.value:  # Search for value to be removed in right subtree
+            if self.right is not None:
+                self.right.remove(value, self)
+        else:  # Value to be removed is found
+            if self.left is not None and self.right is not None:
+                self.value = self.right.getMinValue()
+                self.right.remove(self.value, self)
+            elif parent is None:
+                if self.left is not None:
+                    self.value = self.left.value
+                    self.right = self.left.right
+                    self.left = self.left.left
+                elif self.right is not None:
+                    self.value = self.right.value
+                    self.left = self.right.left
+                    self.right = self.right.right
+                else:
+                    # This is a single-node tree; do nothing
+                    pass
+            elif parent.left == self:
+                parent.left = self.left if self.left is not None else self.right
+            elif parent.right == self:
+                parent.right = self.left if self.left is not None else self.right
+        return self
+
+    def getMinValue(self):
+        if self.left is None:
+            return self.value
+        else:
+            return self.left.getMinValue()
