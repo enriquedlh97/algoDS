@@ -56,6 +56,7 @@ Sample usage:
 """
 
 
+# My BST implementation implemented iteratively for all methods
 class BST:
     def __init__(self, value):
         """ Binary Search Tree
@@ -174,6 +175,11 @@ class BST:
 
         return node, parent, False
 
+    # Time O(h) average case, where h is the the height of the tree which is h = lg(n) where n is the
+    # number of nodes in the tree, hence average case is O(lg(n)). The worst case is O(n),
+    # when the tree is skewed and has, for example, only left sides (single chain)
+
+    # Space O(1)
     def remove(self, value, exclude_parent=False):
         """ Method for removing a node form a BST
 
@@ -303,7 +309,8 @@ class BST:
     def find_smallest(node):
         """ Helper static method to find the smallest value in a BST
 
-        Iteratively searches for the smallest node in a BST
+        Iteratively searches for the smallest node in a BST. It is a static method because it does not use the th self
+        property.
 
         :param node: BST object
         :return: integer value corresponding to the to the value of the smallest node in the BST
@@ -315,3 +322,90 @@ class BST:
             smallest = node.value
 
         return smallest
+
+# Original BST iterative implementation. The time and space complexity shown below is the same for all methods
+# Time O(h) average case, where h is the the height of the tree which is h = lg(n) where n is the
+# number of nodes in the tree, hence average case is O(lg(n)). The worst case is O(n),
+# when the tree is skewed and has, for example, only left sides (single chain)
+
+# Space O(1)
+# This class is not documented because the documentation would be pretty much the same as my BST implementation
+class BST_iterative:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    # Average: O(lg(n)) time  | O(1) space
+    # Worst: O(n) time | O(1) space
+    def insert(self, value):
+        currentNode = self
+        while True:
+            if value < currentNode.value:
+                if currentNode.left is None:
+                    currentNode.left = BST_iterative(value)
+                    break
+                else:
+                    currentNode = currentNode.left
+            else:
+                if currentNode.right is None:
+                    currentNode.right = BST_iterative(value)
+                    break
+                else:
+                    currentNode = currentNode.right
+        return self
+
+    # Average: O(lg(n)) time  | O(1) space
+    # Worst: O(n) time | O(1) space
+    def contains(self, value):
+        currentNode = self
+        while currentNode is not None:
+            if value < currentNode.value:
+                currentNode = currentNode.left
+            elif value > currentNode.value:
+                currentNode = currentNode.right
+            else:
+                return True
+        return False
+
+    # Average: O(lg(n)) time  | O(1) space
+    # Worst: O(n) time | O(1) space
+    def remove(self, value, parentNode=None):
+        currentNode = self
+        # Finds the node to be deleted
+        while currentNode is not None:
+             if value < currentNode.value:
+                 parentNode = currentNode
+                 currentNode = currentNode.left
+             elif value > currentNode.value:
+                 parentNode = currentNode
+                 currentNode = currentNode.right
+             else: # Executes when node to be removed has been found
+                 if currentNode.left is not None and currentNode.right is not None:
+                     currentNode.value = currentNode.right.getMinValue()
+                     currentNode.right.remove(currentNode.value, currentNode)
+                 elif parentNode is None:
+                     if currentNode.left is not None:
+                         currentNode.value = currentNode.left.value
+                         currentNode.right = currentNode.left.right
+                         currentNode.left = currentNode.left.left
+                     elif currentNode.right is not None:
+                         currentNode.value = currentNode.right.getMinValue
+                         currentNode.left = currentNode.right.left
+                         currentNode.right = currentNode.right.right
+                     else:
+                         # This is a single-node tree; do nothing
+                         pass
+                 elif parentNode.left == currentNode:
+                     parentNode.left = currentNode.left if currentNode.left is not None else currentNode.right
+                 elif parentNode.right == currentNode:
+                     parentNode.right = currentNode.left if currentNode.left is not None else currentNode.right
+                 break
+        return self
+
+
+    def getMinValue(self):
+        currentNode = self
+        while currentNode.left is not None:
+            currentNode = currentNode.left
+        return  currentNode.value
