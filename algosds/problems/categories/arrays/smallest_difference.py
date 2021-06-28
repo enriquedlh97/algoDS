@@ -64,7 +64,7 @@ def smallest_difference_original(array_one, array_two):
     smallest = float("inf")
     current = float("inf")
     smallest_pair = []
-    while idx_two < len(array_one) and idx_two < len(array_two):
+    while idx_one < len(array_one) and idx_two < len(array_two):
         first_num = array_one[idx_one]
         second_num = array_two[idx_two]
         if first_num < second_num:
