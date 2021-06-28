@@ -18,7 +18,8 @@ Output:
 
 """
 
-
+# Time O( n^(2) ), where n is the length of the input array
+# Space O(n), where n is the length of the input array
 def three_number_sum(array, target_sum):
     """ Loops over array with one pointer and uses two more to complete the triplet
 
