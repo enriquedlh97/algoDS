@@ -32,7 +32,7 @@ def move_element_to_end_original(array, to_move):
 
     The execution is done until both pointers meet each other.
 
-    :param array: Non-empty array of integers
+    :param array: Array of integers
     :param to_move: Integer corresponding to the values that have to be sent to the end of the original array
     :return: the original array with values corresponding to the to_move value sent to the back
     """
@@ -57,7 +57,7 @@ def move_element_to_end_list(array, to_move):
     This solution works basically the same as the previous original solution. The only exception is that there is no
     outer while loop.
 
-    :param array: Non-empty array of integers
+    :param array: Array of integers
     :param to_move: Integer corresponding to the values that have to be sent to the end of the original array
     :return: the original array with values corresponding to the to_move value sent to the back
     """
@@ -93,7 +93,7 @@ def move_element_to_end_list_deque(array, to_move):
 
     This solution yields a higher space complexity, which in the worst case scenario will be O( n - 1 ) = O(n)
 
-    :param array: Non-empty array of integers
+    :param array: Array of integers
     :param to_move: Integer corresponding to the values that have to be sent to the end of the original array
     :return: the original array with values corresponding to the to_move value sent to the back
     """
