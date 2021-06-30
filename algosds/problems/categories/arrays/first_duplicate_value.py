@@ -46,10 +46,10 @@ def first_duplicate_value_original_brute_force(array):
             if value == value_to_compare:
                 minimum_second_index = min(minimum_second_index, j)
 
-        if minimum_second_index == len(array):
-            return -1
+    if minimum_second_index == len(array):
+        return -1
 
-        return array[minimum_second_index]
+    return array[minimum_second_index]
 
 
 # Time O(n), where n is the length of the input array
