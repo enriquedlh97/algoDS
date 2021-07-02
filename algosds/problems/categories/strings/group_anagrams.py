@@ -61,7 +61,7 @@ def group_anagrams_original_brute_force(words):
     over each word (w is the number of words in the input array) and n*lg(n) time for sorting the letters of each word
     (where n is the length of the longest word). So, the whole operation takes O(w * n * lg(n)) time. Additionally,
     since a new array of sorted words of length w (where w is the number of words in the input array) the operation
-    takes O(w) space.
+    takes O(w * n) space. The n is because it corresponds to the length of the longest word.
 
     This operation has the following effect. Assuming an input array
 
@@ -101,14 +101,14 @@ def group_anagrams_original_brute_force(words):
     # the word sorted in alphabetical order.  For example, sorted('hola') -> ['a', 'h', 'l', 'o']. For this reason, and
     # to get back a string, the "".join() method is used to concatenate the characters into a string. So, in this case
     # "".join(sorted('hola')) -> 'ahlo'.
-    # This operation takes O(w * n * lg(n)) time and O(w) space
+    # This operation takes O(w * n * lg(n)) time and O(w * n) space
     sorted_words = ["".join(sorted(w)) for w in words]
     # This creates an array of size w (where w is the number of words in the input array) with vales from 0 to w - 1
     indices = [i for i in range(len(words))]
     # This operation sorts the elements in the indices array, corresponding to the positions of the words in the
     # sorted_array, in the same order that they would be in if the actual words that they represent were sorted in
     # alphabetical order.
-    # The operation takes O(w * lg(w))
+    # The operation takes O(n * w * lg(w))
     indices.sort(key=lambda x: sorted_words[x])
 
     result = []
