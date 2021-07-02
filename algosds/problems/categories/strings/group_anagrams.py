@@ -27,6 +27,11 @@ Output:
 # Time: O(w*n*lg(n))
 # Space: O(w*n)
 def group_anagrams_hash_table(words):
+    """ My solution using hash table
+
+    :param words: Input array of strings containing potential anagrams
+    :return: List of anagram groups in no particular order
+    """
     strings_dict = {}
 
     for string in words:
@@ -40,9 +45,14 @@ def group_anagrams_hash_table(words):
     return [anagram_group for anagram_group in strings_dict.values()]
 
 
-# Time: O(w*n*lg(n))
+# Time: O(w*n*lg(n) + n*w*lg(w))
 # Space: O(w*n)
 def group_anagrams_original_brute_force(words):
+    """ Original brute force solution
+
+    ::param words: Input array of strings containing potential anagrams
+    :return: List of anagram groups in no particular order
+    """
     if len(words) == 0:
         return []
 
@@ -74,6 +84,11 @@ def group_anagrams_original_brute_force(words):
 # Time: O(w*n*lg(n))
 # Space: O(w*n)
 def group_anagrams_original_hash_table(words):
+    """ Original solution using hash table
+
+    :param words: Input array of strings containing potential anagrams
+    :return: List of anagram groups in no particular order
+    """
     anagrams = {}
     for word in words:
         sorted_word = "".join(sorted(word))
