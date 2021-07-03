@@ -24,10 +24,16 @@ Output:
 """
 
 
-# Time: O(w*n*lg(n))
-# Space: O(w*n)
+# Time: O(w*n*lg(n)) time, where w is the number of words and n the length of the longest word
+# Space: O(w*n) space
 def group_anagrams_hash_table(words):
     """ My solution using hash table
+
+    This solutions works by iteration over all words in the input array and, for each of them, sorting the letters
+    (generating an anagram), and check if it already exists in a hash table. If it does nto exists, then we added with
+    the anagram as key and the actual string as value. If is is already in the hash table we then just appended it.
+
+    The reason for the O(w*n*lg(n)) time is the same one explained in the solution below. 
 
     :param words: Input array of strings containing potential anagrams
     :return: List of anagram groups in no particular order
@@ -46,7 +52,7 @@ def group_anagrams_hash_table(words):
 
 
 # Time: O(w*n*lg(n) + n*w*lg(w)) time, where w is the number of words and n the length of the longest word
-# Space: O(w*n)
+# Space: O(w*n) space
 def group_anagrams_original_brute_force(words):
     """ Original brute force solution
 
@@ -175,10 +181,12 @@ def group_anagrams_original_brute_force(words):
     return result
 
 
-# Time: O(w*n*lg(n))
-# Space: O(w*n)
+# Time: O(w*n*lg(n)) time, where w is the number of words and n the length of the longest word.
+# Space: O(w*n) space
 def group_anagrams_original_hash_table(words):
     """ Original solution using hash table
+
+    This solution works exactly the same as my hash table solution. The implementation is just a little different.
 
     :param words: Input array of strings containing potential anagrams
     :return: List of anagram groups in no particular order
