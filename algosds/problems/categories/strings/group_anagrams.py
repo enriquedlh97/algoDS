@@ -33,7 +33,7 @@ def group_anagrams_hash_table(words):
     (generating an anagram), and check if it already exists in a hash table. If it does nto exists, then we added with
     the anagram as key and the actual string as value. If is is already in the hash table we then just appended it.
 
-    The reason for the O(w*n*lg(n)) time is the same one explained in the solution below. 
+    The reason for the O(w*n*lg(n)) time is the same one explained in the solution below.
 
     :param words: Input array of strings containing potential anagrams
     :return: List of anagram groups in no particular order
