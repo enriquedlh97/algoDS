@@ -82,7 +82,7 @@ class Queue:
         :return:
         """
         if self.items:
-            self.items.pop()
+            return self.items.pop()
         else:
             return None
 
@@ -96,7 +96,7 @@ class Queue:
 
     def is_empty(self):
         """
-        
+
         :return:
         """
         if self.items:
@@ -111,3 +111,75 @@ class Queue:
         """
         return len(self.items)
 
+
+class Deque:
+    """
+
+    """
+
+    def __init__(self):
+        """
+
+        """
+        self.items = []
+
+    def append_left(self, item):
+        """
+
+        :param item:
+        :return:
+        """
+        self.items.insert(0, item)
+
+    def append_right(self, item):
+        """
+
+        :param item:
+        :return:
+        """
+        self.items.append(item)
+
+    def pop_left(self):
+        """
+
+        :return:
+        """
+        return self.items.pop(0)
+
+    def pop_right(self):
+        """
+
+        :return:
+        """
+        return self.items.pop()
+
+    def size(self):
+        """
+
+        :return:
+        """
+        return len(self.items)
+
+    def is_empty(self):
+        """
+
+        :return:
+        """
+        if self.items:
+            return False
+        else:
+            return True
+
+    def peek_front(self):
+        """
+
+        :return:
+        """
+        return self.items[0]
+
+    def peek_back(self):
+        """
+
+        :return:
+        """
+        return self.items[-1]
