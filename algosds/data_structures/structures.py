@@ -56,6 +56,9 @@ class Stack:
         else:
             return True
 
+    def get_stack(self):
+        return self.items
+
 
 class Queue:
     """
