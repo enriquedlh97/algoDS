@@ -118,4 +118,4 @@ def make_array_from_character_frequencies(character_frequencies):
         for _ in range(frequency):
             characters.append(character)
 
-    return  characters
+    return characters
