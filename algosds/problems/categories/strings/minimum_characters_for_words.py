@@ -19,13 +19,14 @@ Output:
 """
 
 
-# Time: O(w*n*lg(n)) time, where w is the number of words and n the length of the longest word
-# Space: O(w*n) space
+# Time: O(n * l) time, where n is the number of words and l the length of the longest word
+# Space: O(n * l) space as upper bound or O(c) space as lower bound where c is the number of unique characters across
+#                 all words
 def minimum_characters_for_words(words):
     """
 
-    :param words:
-    :return:
+    :param words: array of strings
+    :return: array of characters containing the smallest array of characters needed to form all of the words
     """
     output_array = []
     unique_chars = {}
@@ -55,12 +56,13 @@ def minimum_characters_for_words(words):
 
 
 # Time: O(n * l) time, where n is the number of words and l the length of the longest word
-# Space: O(c) space, where c is the number of unique characters across all words
+# Space: O(n * l) space as upper bound or O(c) space as lower bound where c is the number of unique characters across
+#                 all words
 def minimum_characters_for_words_original(words):
     """
 
-    :param words:
-    :return:
+    :param words: array of strings
+    :return: array of characters containing the smallest array of characters needed to form all of the words
     """
     maximum_character_frequencies = {}
 

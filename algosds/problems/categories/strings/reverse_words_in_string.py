@@ -119,7 +119,7 @@ def reverse_words_in_string_original2(string):
 
 def reverse_list_range(characters, start, end):
     """
-    
+
     :param characters:
     :param start:
     :param end:
