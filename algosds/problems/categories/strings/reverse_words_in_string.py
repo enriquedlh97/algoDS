@@ -32,6 +32,12 @@ from collections import deque
 def reverse_words_in_string(string):
     """ My solution
 
+    This solution works by looping over each character from the input string. Whenever a word is identified, then it is
+    appended to the front of a deque. Whenever a single space is identified it is also immediately appended to the front
+    of the deque.
+
+    At the end the deque is turned into a list and the list is joined and turned into the reversed output string.
+
     :param string: input string
     :return: input string with the orders in reverse order
     """
@@ -78,14 +84,16 @@ def reverse_words_in_string_original(string):
     for idx in range(len(string)):
         character = string[idx]
 
-        if character == " ":
-            words.append(string[start_of_word:idx])
-            start_of_word = idx
-        elif string[start_of_word] == " ":
+        if character == " ":  # Checks if character at idx is a space
+            words.append(string[start_of_word:idx])  # We append the word up to the current index but not including it
+            start_of_word = idx  # Resets start of word
+        elif string[start_of_word] == " ":  # Every time the start of word is a space we append it immediately
             words.append(" ")
             start_of_word = idx
 
     # This operation takes O(n) time
+    # Makes sure the las word is added since it could happen that the last
+    # character will not be a space " "
     words.append(string[start_of_word:])
 
     # This operation takes O(n) time
@@ -97,8 +105,11 @@ def reverse_words_in_string_original(string):
 def reverse_list(characters):
     """ Helper function for reverse_words_in_string_original, reverses array
 
-    :param characters:
-    :return:
+     Works by swapping the first element with the first element and then continues inwards until the string is
+     reversed.
+
+    :param characters: string to be reversed
+    :return: reversed characters string
     """
     start, end = 0, len(characters) - 1
 
@@ -117,7 +128,7 @@ def reverse_words_in_string_original2(string):
 
     "AlgoExpert is the best!"
 
-    This puts the words in the correct ouptu order. Once it is reverse it would look like this
+    This puts the words in the correct output order. Once it is reverse it would look like this
 
     "!tseb eht si trepxEoglA"
 
@@ -128,8 +139,8 @@ def reverse_words_in_string_original2(string):
     :param string: input string
     :return: input string with the orders in reverse order
     """
-    characters = [char for char in string]
-    reverse_list_range(characters, 0, len(characters) - 1)
+    characters = [char for char in string]  # Represent the string as a list to manipulate it more easily
+    reverse_list_range(characters, 0, len(characters) - 1)  # Reverses list inplace
 
     start_of_word = 0
     while start_of_word < len(characters):
@@ -144,12 +155,15 @@ def reverse_words_in_string_original2(string):
 
 
 def reverse_list_range(characters, start, end):
-    """
+    """ Helper function for original solution 2, used for reversing individual words within a range of indices
 
-    :param characters:
-    :param start:
-    :param end:
-    :return:
+    Works by swapping the first element with the first element and then continues inwards until the string is
+    reversed.
+
+    :param characters: string to be reversed
+    :param start: integer indicating the start character
+    :param end: integer representing the end character
+    :return: original character string reversed
     """
     while start < end:
         characters[start], characters[end] = characters[end], characters[start]
