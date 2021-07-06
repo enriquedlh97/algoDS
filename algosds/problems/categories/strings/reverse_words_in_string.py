@@ -12,7 +12,7 @@ Problem:
     Note that you're not allowed to to use any built-in split or reverse methods/functions. However, you are allowed to
     use a built-in join method/function.
 
-    Also note that the input string is not guaranteed to alwasy contian words.
+    Also note that the input string is not guaranteed to always contain words.
 
 Input:
 
@@ -30,10 +30,10 @@ from collections import deque
 # Time: O(n) time, where w is the length of string
 # Space: O(n) space
 def reverse_words_in_string(string):
-    """
+    """ My solution
 
-    :param string:
-    :return:
+    :param string: input string
+    :return: input string with the orders in reverse order
     """
     output = deque()
     current_word = ""
@@ -55,14 +55,26 @@ def reverse_words_in_string(string):
 # Time: O(n) time, where w is the length of string
 # Space: O(n) space
 def reverse_words_in_string_original(string):
-    """
+    """ Original solution, finds words, then reverses their order
 
-    :param string:
-    :return:
+    This solution works by first looping over all characters form the input string. For each characters a few checks are
+    performed. To identify words, a variable called start_of_word is initialized to 0, corresponding to the first
+    character in the string. As the loop executes, the idx variable keeps track of what is going to be the end of the
+    word. We know we are at the end of a a word when the current idx points to a character corresponding to an empty
+    space " ". Once this happens, the characters from start_of_word to the current idx (not inclusive) are appended to
+    a list along with the empty space " ".
+
+    This procedure continues until all words have been added to the words array.
+
+    At the end this array is reversed with a custom function that then turns it into a string and returns it as output.
+
+    :param string: input string
+    :return: input string with the orders in reverse order
     """
     words = []
     start_of_word = 0
 
+    # This operation takes O(n) time and O(n) space
     for idx in range(len(string)):
         character = string[idx]
 
@@ -73,15 +85,17 @@ def reverse_words_in_string_original(string):
             words.append(" ")
             start_of_word = idx
 
+    # This operation takes O(n) time
     words.append(string[start_of_word:])
 
+    # This operation takes O(n) time
     reverse_list(words)
 
-    return "".join(words)
+    return "".join(words)  # This operation takes O(n) time
 
 
 def reverse_list(characters):
-    """
+    """ Helper function for reverse_words_in_string_original, reverses array
 
     :param characters:
     :return:
@@ -97,10 +111,22 @@ def reverse_list(characters):
 # Time: O(n) time, where w is the length of string
 # Space: O(n) space
 def reverse_words_in_string_original2(string):
-    """
+    """ Original solution, reverses entire string, un-reverses words.
 
-    :param string:
-    :return:
+    This solution works by first reversing the entire string. So if the input string was
+
+    "AlgoExpert is the best!"
+
+    This puts the words in the correct ouptu order. Once it is reverse it would look like this
+
+    "!tseb eht si trepxEoglA"
+
+    Then, each word is un-reversed. So we end up with the final solution
+
+    "best! the is AlgoExpert"
+
+    :param string: input string
+    :return: input string with the orders in reverse order
     """
     characters = [char for char in string]
     reverse_list_range(characters, 0, len(characters) - 1)
