@@ -23,7 +23,20 @@ Output:
 # Space: O(n * l) space as upper bound or O(c) space as lower bound where c is the number of unique characters across
 #                 all words
 def minimum_characters_for_words(words):
-    """
+    """ My solution
+
+    This solution works with a final dictionary of all unique characters an their frequencies (unique_chars). First, the
+    algorithm loops over all words from the input array of strings. Then, for each word, an empty dictionary is
+    initialized. This dictionary is used to keep track of the unique characters and their frequencies in the current
+    word.
+
+    Then, the unique_chars dictionary is updated with this values.
+
+    At the end, the unique_chars dictionary is transformed into an array of characters and returned as the final
+    solution.
+
+    This solution is essentially the same as the original solution below. For more details on the logic see the
+    documentation of the solution below.
 
     :param words: array of strings
     :return: array of characters containing the smallest array of characters needed to form all of the words
