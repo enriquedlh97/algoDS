@@ -136,12 +136,19 @@ def count_character_frequencies(string):
     return character_frequencies
 
 
+# Time: O(c) space, where c is the number of unique characters in the string
+# Space: O(c) space, where c is the number of unique characters in the string
 def update_maximum_frequencies(frequencies, maximum_frequencies):
-    """
+    """ Helper function for original solution to update the frequency of characters in the main dictionary
 
-    :param frequencies:
-    :param maximum_frequencies:
-    :return:
+    This helper function works by looping over each key of the frequencies dictionary. For each key, if it is not yet in
+    the maximum_frequencies it is added; otherwise, when the character is already in there, then if the current
+    frequency of the character is bigger than the frequency in the maximum_frequencies dictionary, then it is updated.
+
+    :param frequencies: dictionary containing the unique characters and their frequencies from the current word
+    :param maximum_frequencies: main dictionary of the final maximum frequencies for each of the unique characters
+           across all words
+    :return: None (the maximum_frequencies dictionary is updated in place)
     """
     for character in frequencies:
         frequency = frequencies[character]
@@ -153,10 +160,11 @@ def update_maximum_frequencies(frequencies, maximum_frequencies):
 
 
 def make_array_from_character_frequencies(character_frequencies):
-    """
+    """ Helper function for original solution to transform the main dictionary into the output array format
 
-    :param character_frequencies:
-    :return:
+    :param character_frequencies: main dictionary of the final maximum frequencies for each of the unique characters
+           across all words
+    :return: array of characters in the corresponding frequency indicated in the character_frequencies dictionary
     """
     characters = []
 
