@@ -239,6 +239,42 @@ def invert_binary_tree_original_iterative(tree):
 def invert_binary_tree_original_recursive(tree):
     """ Original recursive solution
 
+    This solution works by dealing with every node independently. The main logic is a helper swapping function (the
+    same one used for the iterative solution) which is call for every child node of the current node.
+
+    For example, taking the following example.
+
+    tree:       1
+             /    \
+            2      3
+          /  \    /  \
+         4    5  6    7
+       /  \
+      8   9
+
+      The first node is 1, for this node, the swapping function is called resulting in the following tree.
+
+      tree:     1
+             /    \
+            3      2
+          /  \    /  \
+         6    7  4    5
+               /  \
+              8   9
+
+    Then the complete recursive algorithm is called again on each of the swapped child nodes. So two calls are made,
+    one for node with value 3 and another oen for node with value 2. Subsequently, each of these nodes' corresponding
+    child nodes are swapped and the process continues until None nodes are found.
+
+    The algorithm takes O(n) time because every single node is seen. The operations for swapping nodes and calling the
+    recursive function are O(1) time operations.
+
+    The space complexity is O(lg(n)) space or O(d) space, where d = lg(n) is the depth or number of levels in the tree.
+    This is because the maximum number of calls in the call stack is going to be at most the number of levels that the
+    tree has. This is because, for example, although for node with value 1 the recursive function is called, for both
+    the left and right nodes, the call for the right node is not going to be executed until the call for the left node
+    is done. This is the same for the child nodes of this current child node.
+
     :param tree: BinaryTree object
     :return: input BinaryTree object inverted
     """
