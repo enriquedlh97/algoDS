@@ -186,3 +186,5 @@ class Deque:
         :return:
         """
         return self.items[-1]
+
+    
