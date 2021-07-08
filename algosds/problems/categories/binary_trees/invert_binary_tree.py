@@ -45,6 +45,9 @@ class BinaryTree:
 def invert_binary_tree(tree):
     """ My recursive solution
 
+    This solution is exactly the same as the original recursive solution. The only difference is that is do not perform
+    the node swaps with a helper function. The swap is explicit programed within the function.
+
     :param tree: BinaryTree object
     :return: input BinaryTree object inverted
     """
