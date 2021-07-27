@@ -1,4 +1,4 @@
-#@TODO Finish LinkedList implementation
+# @TODO Finish LinkedList implementation
 class Node:
     def __init__(self, data):
         self.data = data
