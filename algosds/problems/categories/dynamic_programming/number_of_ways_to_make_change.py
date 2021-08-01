@@ -22,11 +22,11 @@ Output:
 # Time: O(n * d) time, where n is the target sum and d the number of coin denominations
 # Space: O(n * d) space
 def number_of_ways_to_make_change_matrix(n, denoms):
-    """
+    """ My solution with matrix to keep track of sub-problems (brute force in space)
 
-    :param n:
-    :param denoms:
-    :return:
+    :param n: integer representing the target sum
+    :param denoms: array of non-negative integers corresponding to the available coin denominations
+    :return: integer representing the maximum number of ways in which the change summing up to n can be given
     """
     results = initialize_results(n, denoms)
 
@@ -36,12 +36,12 @@ def number_of_ways_to_make_change_matrix(n, denoms):
 
 
 def get_number_of_ways(n, denoms, results):
-    """
+    """ Helper function, handles logic for def number_of_ways_to_make_change_matrix(n, denoms)
 
-    :param n:
-    :param denoms:
-    :param results:
-    :return:
+    :param n: integer representing the target sum
+    :param denoms: array of non-negative integers corresponding to the available coin denominations
+    :param results: two-dimensional array representing matrix keeping track of the sub-problems solutions
+    :return: integer representing the maximum number of ways in which the change summing up to n can be given
     """
     # Handle base case
     if n == 0:
@@ -61,11 +61,11 @@ def get_number_of_ways(n, denoms, results):
 
 
 def initialize_results(n, denoms):
-    """
+    """ Helper function to initialize matrix of sub-problem results
 
-    :param n:
-    :param denoms:
-    :return:
+    :param n: integer representing the target sum
+    :param denoms: array of non-negative integers corresponding to the available coin denominations
+    :return: two-dimensional array representing initialized with zeroes and a 1 in position [0][0]
     """
     first_result = [0 for _ in range(0, n)]
     first_result.insert(0, 1)
@@ -82,11 +82,11 @@ def initialize_results(n, denoms):
 # Time: O(n * d) time, where n is the target sum and d the number of coin denominations
 # Space: O(n) space
 def number_of_ways_to_make_change_linear_space(n, denoms):
-    """
+    """ My solution using array to keep track of sub-problems
 
-    :param n:
-    :param denoms:
-    :return:
+    :param n: integer representing the target sum
+    :param denoms: array of non-negative integers corresponding to the available coin denominations
+    :return: integer representing the maximum number of ways in which the change summing up to n can be given
     """
     # Initialize results array
     results = [1 if idx == 0 else 0 for idx in range(0, n + 1)]
@@ -98,12 +98,12 @@ def number_of_ways_to_make_change_linear_space(n, denoms):
 
 
 def get_ways(n, denoms, results):
-    """
+    """ Helper function, handles logic for number_of_ways_to_make_change_linear_space(n, denoms)
 
-    :param n:
-    :param denoms:
-    :param results:
-    :return:
+    :param n: integer representing the target sum
+    :param denoms: array of non-negative integers corresponding to the available coin denominations
+    :param results: array of integers containing the most current solution to the sub-problems
+    :return: :return: integer representing the maximum number of ways in which the change summing up to n can be given
     """
     if n == 0:
         return 1
@@ -119,11 +119,11 @@ def get_ways(n, denoms, results):
 # Time: O(n * d) time, where n is the target sum and d the number of coin denominations
 # Space: O(n) space
 def number_of_ways_to_make_change_original(n, denoms):
-    """
-    
-    :param n:
-    :param denoms:
-    :return:
+    """ Original solution
+
+    :param n: integer representing the target sum
+    :param denoms: array of non-negative integers corresponding to the available coin denominations
+    :return: integer representing the maximum number of ways in which the change summing up to n can be given
     """
     ways = [0 for _ in range(n + 1)]
     ways[0] = 1
