@@ -99,7 +99,7 @@ def min_number_of_coins_for_change_linear_space(n, denoms):
 # Space: O(n) space
 def min_number_of_coins_for_change_original(n, denoms):
     """
-    
+
     :param n:
     :param denoms:
     :return:
