@@ -25,11 +25,11 @@ Output:
 # Time: O(n * d) time, where n is the target sum and d the number of coin denominations
 # Space: O(n * d) space
 def min_number_of_coins_for_change(n, denoms):
-    """
+    """ My brute force solution
 
-    :param n:
-    :param denoms:
-    :return:
+    :param n: non-negative integer representing the target amount of money
+    :param denoms: array of positive integers representing coin denominations
+    :return: integer representing the smallest number of coins needed to make change for (sum up to) the target amount
     """
     # Initialize results matrix
     results = initialize_results(n, denoms)
@@ -41,12 +41,13 @@ def min_number_of_coins_for_change(n, denoms):
 
 
 def get_min_number(n, denoms, results):
-    """
+    """ Helper function that handles logic for min_number_of_coins_for_change() function
 
-    :param n:
-    :param denoms:
-    :param results:
-    :return:
+    :param n: non-negative integer representing the target amount of money
+    :param denoms: array of positive integers representing coin denominations
+    :param results: two-dimensional array corresponding to a matrix to save sub-problem results initialized with inf except for
+                    the (0, 0) element containing 0
+    :return: integer representing the smallest number of coins needed to make change for (sum up to) the target amount
     """
     for idx_coin in range(len(denoms)):
         for target in range(1, n + 1):
@@ -60,11 +61,12 @@ def get_min_number(n, denoms, results):
 
 
 def initialize_results(n, denoms):
-    """
+    """ Helper function tu initialize results matrix
 
-    :param n:
-    :param denoms:
-    :return:
+    :param n: non-negative integer representing the target amount of money
+    :param denoms: array of positive integers representing coin denominations
+    :return: two-dimensional array corresponding to a matrix to save sub-problem results initialized with inf except for
+             the (0, 0) element containing 0
     """
     results = [[0 if idx == 0 else float('inf') for idx in range(n + 1)]]
 
@@ -77,11 +79,11 @@ def initialize_results(n, denoms):
 # Time: O(n * d) time, where n is the target sum and d the number of coin denominations
 # Space: O(n) space
 def min_number_of_coins_for_change_linear_space(n, denoms):
-    """
+    """ My optimal linear solution
 
-    :param n:
-    :param denoms:
-    :return:
+    :param n: non-negative integer representing the target amount of money
+    :param denoms: array of positive integers representing coin denominations
+    :return: integer representing the smallest number of coins needed to make change for (sum up to) the target amount
     """
     # Initialize array
     results = [0 if idx == 0 else float('inf') for idx in range(n + 1)]
@@ -98,11 +100,11 @@ def min_number_of_coins_for_change_linear_space(n, denoms):
 # Time: O(n * d) time, where n is the target sum and d the number of coin denominations
 # Space: O(n) space
 def min_number_of_coins_for_change_original(n, denoms):
-    """
+    """ Original optimal linear solution
 
-    :param n:
-    :param denoms:
-    :return:
+    :param n: non-negative integer representing the target amount of money
+    :param denoms: array of positive integers representing coin denominations
+    :return: integer representing the smallest number of coins needed to make change for (sum up to) the target amount
     """
     num_of_coins = [float('inf') for _ in range(n + 1)]
     num_of_coins[0] = 0
