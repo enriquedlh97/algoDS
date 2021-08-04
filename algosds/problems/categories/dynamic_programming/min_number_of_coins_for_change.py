@@ -27,6 +27,18 @@ Output:
 def min_number_of_coins_for_change(n, denoms):
     """ My brute force solution
 
+    To understand the general approach watch:
+    https://www.youtube.com/watch?v=xCbYmUPvc2Q
+    and
+    https://www.youtube.com/watch?v=DJ4a7cmjZY0
+
+    This approach is then adjusted for the current problem, very similar to this:
+    https://www.youtube.com/watch?v=jgiZlGzXMBw
+
+    The time complexity is O(n * d), where n is the target sum and d the number of coin denominations, because n * d
+    sub-problems are solved. The space complexity is the same because a matrix os size n * d is used to keep track of
+    the answer for each sub-problem.
+
     :param n: non-negative integer representing the target amount of money
     :param denoms: array of positive integers representing coin denominations
     :return: integer representing the smallest number of coins needed to make change for (sum up to) the target amount
@@ -42,6 +54,8 @@ def min_number_of_coins_for_change(n, denoms):
 
 def get_min_number(n, denoms, results):
     """ Helper function that handles logic for min_number_of_coins_for_change() function
+
+    This function performs the actual logic.
 
     :param n: non-negative integer representing the target amount of money
     :param denoms: array of positive integers representing coin denominations
@@ -63,6 +77,8 @@ def get_min_number(n, denoms, results):
 def initialize_results(n, denoms):
     """ Helper function tu initialize results matrix
 
+    This helper function initializes the matrix.
+
     :param n: non-negative integer representing the target amount of money
     :param denoms: array of positive integers representing coin denominations
     :return: two-dimensional array corresponding to a matrix to save sub-problem results initialized with inf except for
@@ -80,6 +96,12 @@ def initialize_results(n, denoms):
 # Space: O(n) space
 def min_number_of_coins_for_change_linear_space(n, denoms):
     """ My optimal linear solution
+
+    This solution follows the same logic as the one above, the difference is that not all answers for every
+    sub-problem are saved, instead only the answer for n + 1 sub-problems are saved. That is why here the space
+    complexity is O(n), the time complexity stays the same because the number of sub-problems solved does not change.
+
+    For more details on the solution see the videos from first solution and AE video explanation.
 
     :param n: non-negative integer representing the target amount of money
     :param denoms: array of positive integers representing coin denominations
@@ -101,6 +123,8 @@ def min_number_of_coins_for_change_linear_space(n, denoms):
 # Space: O(n) space
 def min_number_of_coins_for_change_original(n, denoms):
     """ Original optimal linear solution
+
+    This solution is the exact same one as the previous) solution, the implementation is just a little different.
 
     :param n: non-negative integer representing the target amount of money
     :param denoms: array of positive integers representing coin denominations
