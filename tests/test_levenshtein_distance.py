@@ -24,7 +24,7 @@ tests = [("abc", "yabd", 2),
          ("cereal", "saturday", 6),
          ("cereal", "saturdzz", 7),
          ("abbbbbbbbb", "bbbbbbbbba", 2),
-         ("xabc", "abcx"),
+         ("xabc", "abcx", 2),
          ("table", "bal", 3),
          ("gumbo", "gambol", 2),
          ]
