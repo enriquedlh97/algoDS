@@ -83,6 +83,12 @@ def initialize_results_brute_force(str1, str2):
 
 # My second solution
 def levenshtein_distance_optimal(str1, str2):
+    """
+
+    :param str1:
+    :param str2:
+    :return:
+    """
     # We want str1 -> str2
 
     # Handle base case with two empty strings
@@ -99,6 +105,13 @@ def levenshtein_distance_optimal(str1, str2):
 
 
 def get_min_edits(small, big, results):
+    """
+
+    :param small:
+    :param big:
+    :param results:
+    :return:
+    """
     for row_idx in range(len(big)):
 
         for col_idx in range(len(small)):
@@ -120,6 +133,12 @@ def get_min_edits(small, big, results):
 
 
 def initialize_results(str1, str2):
+    """
+
+    :param str1:
+    :param str2:
+    :return:
+    """
     # Identifies smaller string
     small = str1 if len(str1) < len(str2) else str2
     big = str2 if len(str2) > len(str1) else str1
@@ -138,6 +157,12 @@ def initialize_results(str1, str2):
 
 # Original brute force solution
 def levenshtein_distance_original_brute_force(str1, str2):
+    """
+
+    :param str1:
+    :param str2:
+    :return:
+    """
     edits = [[x for x in range(len(str1) + 1)] for _ in range(len(str2) + 1)]
 
     for i in range(1, len(str2) + 1):
@@ -155,6 +180,12 @@ def levenshtein_distance_original_brute_force(str1, str2):
 
 # Original optimal solution
 def levenshtein_distance_original_optimal(str1, str2):
+    """
+    
+    :param str1:
+    :param str2:
+    :return:
+    """
     small = str1 if len(str1) < len(str2) else str2
     big = str1 if len(str1) >= len(str2) else str2
     even_edits = [x for x in range(len(small) + 1)]
