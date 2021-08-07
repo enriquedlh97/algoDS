@@ -27,8 +27,8 @@ def levenshtein_distance_brute_force(str1, str2):
     """ My brute force solution
 
     This solution is optimal in time complexity. It takes O(n * m) time, where and m are the lengths of the first and
-    second strings, because it solves n * m sub-problems. It takes O(n * m) space because it uses an n * m matrix to
-    store the solutions for these sub-problems.
+    second strings, because it solves n * m sub-problems. It takes O(n * m) space because it uses an n + 1 * m + 1
+    matrix to store the solutions for these sub-problems.
 
     This algorithm consists of 2 steps. The first step initializes the results matrix. The second steps solves each of
     the n * m sub-problems. After that, the solution, corresponding to the result for the final sub-problem, is returned
@@ -82,16 +82,91 @@ def get_min_edits_brute_force(str1, str2, results):
 def initialize_results_brute_force(str1, str2):
     """ Helper function for my brute force solution, initializes results matrix
 
+    This helper function returns a two-dimensional array of size n + 1 * m + 1, where n and m are the lengths of the
+    first and second strings. The + 1 is because an empty space is added at the beginning of each string.
+
+    For example, in the case where
+
+    str1: "abc"
+    str2: "yabd"
+
+    In this case, the resulting strings after the + 1 are as follows:
+
+    str1: " abc"
+    str2: " yabd"
+
+    And the resulting matrix is as follows (not yet initialized):
+       0    1    2   3   4
+    0     |" "| a | b | c |
+      _____________________
+    1 " " |   |   |   |   |
+      _____________________
+    2  b  |   |   |   |   |
+      _____________________
+    3  c  |   |   |   |   |
+      _____________________
+    4  d  |   |   |   |   |
+      _____________________
+
+    The initialization works by iterating over the characters using a nested for loop where, in each row, the first
+    element corresponds to the row number (starting from 0) and the rest of the elements are just 0.
+
+    This results in the following results matrix:
+
+       0    1    2   3   4
+    0     |" "| a | b | c |
+      _____________________
+    1 " " | 0 | 1 | 2 | 3 |
+      _____________________
+    2  b  | 1 | 0 | 0 | 0 |
+      _____________________
+    3  c  | 2 | 0 | 0 | 0 |
+      _____________________
+    4  d  | 3 | 0 | 0 | 0 |
+      _____________________
+
+    In this case, the first row and first column values correspond to the answers to those sub-problems. These solutions
+    can be initialized because the answers to these sub-problems are always the same.
+
+    The first row has the solutions to the following sub-problems.
+
+    1) str1: " " -> str2: " "
+    2) str1: " a" -> str2: " "
+    3) str1: " ab" -> str2: " "
+    4) str1: " abc" -> str2: " "
+
+    These sub-problems are all incrementally considering the complete original str1: "abc" and computing the min edits
+    to turn it into str2: " ".
+
+    Each of the str1 of these sub-problems can be turned into str2: " " by removing/deleting each character.
+
+    For the sub-problem 1) since str1: " " nothing has to be done, that is why the answer is 0.
+    For the sub-problem 2) since str1: " a" just the a has to be deleted, that is why the answer is 1, because one edit
+    operation has to be performed. The logic is the same for the other sub-problems.
+
+    In the case of the first column, the logic is the same as for the first row, the only difference is that in this
+    case the sub-problems are as follows:
+
+    1) str1: " " -> str2: " "
+    2) str1: " " -> str2: " b"
+    3) str1: " " -> str2: " bc"
+    4) str1: " " -> str2: " bcd"
+    
+    So here, the edit operations are insertions of characters where for the first sub-problem no insertion ahs to be
+    made, for the second one only one insertion (character b), and so on.
+
     :param str1: string
     :param str2: string
-    :return:
+    :return: two-dimensional array corresponding to the initialized matrix of results
     """
     # We want str1 -> str2
     results = []
 
     for row in range(len(str2) + 1):
+        # First element of the array corresponds to the row number starting from 0
         row_init = [row]
         for col in range(len(str1)):
+            # Fills rest of array with 0s
             row_init.append(col + 1 if row == 0 else 0)
 
         results.append(row_init)
