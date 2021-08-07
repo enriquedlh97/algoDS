@@ -21,10 +21,28 @@ Output:
 
 # My first solution
 
-# Time: O(n * d) time, where and m are the lengths of the first and second strings.
-# Space: O(n * d) space
+# Time: O(n * m) time, where n and m are the lengths of the first and second strings.
+# Space: O(n * m) space
 def levenshtein_distance_brute_force(str1, str2):
     """ My brute force solution
+
+    This solution is optimal in time complexity. It takes O(n * m) time, where and m are the lengths of the first and
+    second strings, because it solves n * m sub-problems. It takes O(n * m) space because it uses an n * m matrix to
+    store the solutions for these sub-problems.
+
+    This algorithm consists of 2 steps. The first step initializes the results matrix. The second steps solves each of
+    the n * m sub-problems. After that, the solution, corresponding to the result for the final sub-problem, is returned
+    as the final answer.
+
+    For details on how the solution works see the documentation for each of the helper function corresponding to each
+    step.
+
+    Additionally, see the following videos as well as the AE explanation:
+    https://www.youtube.com/watch?v=MiqoA-yF-0M
+    https://www.youtube.com/watch?v=We3YDTzNXEk
+    https://www.youtube.com/watch?v=Xxx0b7djCrs
+    https://www.youtube.com/watch?v=AuYujVj646Q
+
 
     :param str1: string
     :param str2: string
