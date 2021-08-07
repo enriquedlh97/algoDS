@@ -24,11 +24,11 @@ Output:
 # Time: O(n * d) time, where and m are the lengths of the first and second strings.
 # Space: O(n * d) space
 def levenshtein_distance_brute_force(str1, str2):
-    """
+    """ My brute force solution
 
-    :param str1:
-    :param str2:
-    :return:
+    :param str1: string
+    :param str2: string
+    :return: integer representing the smallest number of edits to turn str1 into str2
     """
     # We want str1 -> str2
 
@@ -42,12 +42,12 @@ def levenshtein_distance_brute_force(str1, str2):
 
 
 def get_min_edits_brute_force(str1, str2, results):
-    """
+    """ Helper function for my brute force solution, handles actual logic of computing min number of edits
 
-    :param str1:
-    :param str2:
+    :param str1: string
+    :param str2: string
     :param results:
-    :return:
+    :return: integer representing the smallest number of edits to turn str1 into str2
     """
     for row_idx in range(len(str2)):
         for col_idx in range(len(str1)):
@@ -62,10 +62,10 @@ def get_min_edits_brute_force(str1, str2, results):
 
 
 def initialize_results_brute_force(str1, str2):
-    """
+    """ Helper function for my brute force solution, initializes results matrix
 
-    :param str1:
-    :param str2:
+    :param str1: string
+    :param str2: string
     :return:
     """
     # We want str1 -> str2
@@ -83,11 +83,11 @@ def initialize_results_brute_force(str1, str2):
 
 # My second solution
 def levenshtein_distance_optimal(str1, str2):
-    """
+    """ My optimal solution, linear space
 
-    :param str1:
-    :param str2:
-    :return:
+    :param str1: string
+    :param str2: string
+    :return: integer representing the smallest number of edits to turn str1 into str2
     """
     # We want str1 -> str2
 
@@ -105,7 +105,7 @@ def levenshtein_distance_optimal(str1, str2):
 
 
 def get_min_edits(small, big, results):
-    """
+    """ Helper function for my optimal solution, computes actual min number of edits
 
     :param small:
     :param big:
@@ -133,10 +133,10 @@ def get_min_edits(small, big, results):
 
 
 def initialize_results(str1, str2):
-    """
+    """ Helper function for my optimal solution, initializes results array
 
-    :param str1:
-    :param str2:
+    :param str1: string
+    :param str2: string
     :return:
     """
     # Identifies smaller string
@@ -157,11 +157,11 @@ def initialize_results(str1, str2):
 
 # Original brute force solution
 def levenshtein_distance_original_brute_force(str1, str2):
-    """
+    """ Original brute force solution
 
-    :param str1:
-    :param str2:
-    :return:
+    :param str1: string
+    :param str2: string
+    :return: integer representing the smallest number of edits to turn str1 into str2
     """
     edits = [[x for x in range(len(str1) + 1)] for _ in range(len(str2) + 1)]
 
@@ -180,11 +180,11 @@ def levenshtein_distance_original_brute_force(str1, str2):
 
 # Original optimal solution
 def levenshtein_distance_original_optimal(str1, str2):
-    """
-    
-    :param str1:
-    :param str2:
-    :return:
+    """ Original optimal solution, linear space
+
+    :param str1: string
+    :param str2: string
+    :return: integer representing the smallest number of edits to turn str1 into str2
     """
     small = str1 if len(str1) < len(str2) else str2
     big = str1 if len(str1) >= len(str2) else str2
