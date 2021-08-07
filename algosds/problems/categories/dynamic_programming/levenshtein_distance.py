@@ -356,24 +356,62 @@ def levenshtein_distance_optimal(str1, str2):
 def get_min_edits(small, big, results):
     """ Helper function for my optimal solution, computes actual min number of edits
 
-    :param small:
-    :param big:
-    :param results:
-    :return:
+    Assuming
+
+    str1: "abc"
+    str2: "yabd"
+
+    The received results array looks as follows:
+
+            0    1   2   3
+          |" "| a | b | c |
+      _____________________
+    0 " " | 0 | 1 | 2 | 3 |
+      _____________________
+    1  y  | 1 | 0 | 0 | 0 |
+      _____________________
+
+    The process of solving each of the sub-problems at (1, 1), (1, 2) and (1, 3) is exactly the same as in the brute
+    force approach. The formula used is the same one.
+
+    After each step, the second row of solutions is initialized with the first entry as the continuing row number. And
+    the first row of solutions is set the same as the results from the previous last row of solutions.
+
+    So, if A is the first row of solutions and B is the second row of solutions we would have:
+
+    results = A
+              B
+
+    Then in the next step, C is going to be the new empty row of results and the results array is updated as follows:
+
+    results = B
+              C
+
+    And this procedure continues until the last row of sub-problems is solved.
+
+    At the end, once all sub-problems are solved, the result of the last solved sub-problem is returned as the answer.
+
+    :param small: original input string with the smallest length
+    :param big: original input string with the biggest length
+    :param results: two-dimensional array with the initialized results
+    :return: integer representing the smallest number of edits to turn str1 into str2
     """
     for row_idx in range(len(big)):
 
         for col_idx in range(len(small)):
 
+            # Checks if compared characters are the same
             if small[col_idx] == big[row_idx]:
 
                 results[1][col_idx + 1] = results[0][col_idx]
 
-            else:
+            else:  # Compared characters are different
                 results[1][col_idx + 1] = 1 + min(results[0][col_idx],
                                                   results[1][col_idx],
                                                   results[0][col_idx + 1])
 
+        # In the last iteration, ie when the last row of sub-problems has been solved, there is no need to re-initialize
+        # a new row of results, otherwise the row of results containing the final answer will be overwritten.
         if row_idx != len(big) - 1:
             results[0], results[1] = results[1], [None for _ in range(len(small) + 1)]
             results[1][0] = row_idx + 2
@@ -404,11 +442,11 @@ def initialize_results(str1, str2):
     The best thing would be to have a results array of size 2 * 4, which would take less space.
 
     What this function does is first identify the smaller string. Then, the results array is created with 2 rows of
-    length smallest (the smallest string that was previously identified) where each entry is a zero.
+    length smallest (the smallest string that was previously identified).
 
     Then, the first entry of the second row is changed to 1.
 
-    Finally the initialized results array is returned along with the small and big strings identified as such. 
+    Finally the initialized results array is returned along with the small and big strings identified as such.
 
     :param str1: string
     :param str2: string
@@ -434,6 +472,9 @@ def initialize_results(str1, str2):
 def levenshtein_distance_original_brute_force(str1, str2):
     """ Original brute force solution
 
+    This original solution follows the same logic as my brute force solution. The implementation is just a little
+    different.
+
     :param str1: string
     :param str2: string
     :return: integer representing the smallest number of edits to turn str1 into str2
@@ -456,6 +497,8 @@ def levenshtein_distance_original_brute_force(str1, str2):
 # Original optimal solution
 def levenshtein_distance_original_optimal(str1, str2):
     """ Original optimal solution, linear space
+
+    This original optimal solution follows the same logic as mine, the implementation is just different.
 
     :param str1: string
     :param str2: string
