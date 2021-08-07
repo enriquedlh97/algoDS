@@ -318,8 +318,19 @@ def initialize_results_brute_force(str1, str2):
 
 
 # My second solution
+# Time: O(n * m) time, where n and m are the lengths of the first and second strings.
+# Space: O(min(n, m)) space
 def levenshtein_distance_optimal(str1, str2):
     """ My optimal solution, linear space
+
+    This solution follows a logic very similar to the brute force solution. The formula is conceptually the same, the
+    only difference is the implementation since for this case only the 2 rows of sub-problem solutions are saved making
+    the algorithm take O(min(n, m)) space.
+
+    A good explanation for this approach is the AE explanation.
+
+    This main function essentially has just 2 main steps. The first one is initializing the results array and the second
+    one corresponds to computing the actual min number of edits.
 
     :param str1: string
     :param str2: string
@@ -332,9 +343,11 @@ def levenshtein_distance_optimal(str1, str2):
         return 0
 
     # Initialize results matrix
+    # This operation takes O(min(n, m)) time and O(min(n, m)) space
     results, small, big = initialize_results(str1, str2)
 
     # Get min number of edits (Levenshtein distance)
+    # This operation takes O(n * m) time and O(1) space
     answer = get_min_edits(small, big, results)
 
     return answer
@@ -371,9 +384,35 @@ def get_min_edits(small, big, results):
 def initialize_results(str1, str2):
     """ Helper function for my optimal solution, initializes results array
 
+    The objective of this helper function is to initialize the 2 dimensional array with the solutions.
+
+    This array is going to be a 2 * min(n, m) dimensional array, this is because only 2 rows of sub-problems will be
+    saved since ony 2 rows is what is needed ata time to compute new sub-problem solutions. The min(n, m) corresponds
+    to the size of the str1 and str2. We take the smallest string because it doe snot matter which string is put
+    horizontally or vertically, and since the idea is to reduce space it is convenient to take the smallest string.
+
+    For example, if we have:
+
+    str1: "abc"
+    str2: "yabd"
+
+    and after the " " is added we get
+
+    str1: " abc"  -> len = 4
+    str2: " yabd" -> len= 5
+
+    The best thing would be to have a results array of size 2 * 4, which would take less space.
+
+    What this function does is first identify the smaller string. Then, the results array is created with 2 rows of
+    length smallest (the smallest string that was previously identified) where each entry is a zero.
+
+    Then, the first entry of the second row is changed to 1.
+
+    Finally the initialized results array is returned along with the small and big strings identified as such. 
+
     :param str1: string
     :param str2: string
-    :return:
+    :return: two-dimensional array with the initialized results
     """
     # Identifies smaller string
     small = str1 if len(str1) < len(str2) else str2
