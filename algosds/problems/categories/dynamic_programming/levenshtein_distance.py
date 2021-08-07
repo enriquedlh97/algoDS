@@ -51,16 +51,157 @@ def levenshtein_distance_brute_force(str1, str2):
     # We want str1 -> str2
 
     # Initialize results matrix
+    # This step takes O(n * m) time and O(n * m) space
     results = initialize_results_brute_force(str1, str2)
 
     # Get min number of edits (Levenshtein distance)
+    # This step takes O(n * m) time and O(1) space
     answer = get_min_edits_brute_force(str1, str2, results)
 
     return answer
 
 
+# Time: O(n * m) time, where n and m are the lengths of the first and second strings.
+# Space: O(1) space
 def get_min_edits_brute_force(str1, str2, results):
     """ Helper function for my brute force solution, handles actual logic of computing min number of edits
+
+    The procedure for solving all sub-problems is very simple. In realty, m + 1 * n * 1 sub-problems are solved, but
+    this step only solves n * m because the other n + m + 1 were already solved during the initialization of the results
+    matrix.
+
+    Assuming
+
+    str1: "abc"
+    str2: "yabd"
+
+    Here we start with the results matrix looking as follows:
+
+            0    1   2   3
+          |" "| a | b | c |
+      _____________________
+    0 " " | 0 | 1 | 2 | 3 |
+      _____________________
+    1  b  | 1 | 0 | 0 | 0 |
+      _____________________
+    2  c  | 2 | 0 | 0 | 0 |
+      _____________________
+    3  d  | 3 | 0 | 0 | 0 |
+      _____________________
+
+    And the function starts to solve at position (1, 1), which is the smallest sub-problem that has not yet been solved.
+
+    To solve a given sub-problem the following formula is used:
+
+    Assuming row = 1 and column = 1 so that results[row][column] correspond to the sub-problem at (1, 1)
+
+                            | results[row - 1][column - 1]                   if str1[column - 1] == str2[row - 1]
+                            |
+    results[row][column] =  |
+                            | 1 + min(results[row - 1][column - 1],
+                            |         results[row - 1][column],              if str1[column - 1] != str2[row - 1]
+                            |         results[row][column - 1])
+
+    Here
+
+    results[row - 1][column - 1] is a DIAGONAL move
+    results[row - 1][column] is an UP move
+    results[row][column - 1] is a BACK move
+
+    So, in our example for the first sub-problem at (1, 1) the previous moves correspond to the following
+
+    results[row - 1][column - 1] -> (0, 0) -> results[0][0] = 0
+    results[row - 1][column] -> (0, 1) -> results[0][1] = 1
+    results[row][column - 1] -> (1, 0) -> results[row - 1][column] = 1
+
+    So essentially, if the characters from str1 and str2 compared are the same, then the last diagonal element is set as
+    the result of the current sub-problem. This is because, when teh characters are the same we can keep the same
+    solution for the previous sub-problem.
+
+    For the sub-problem (1, 1) we get the answer as follows.
+
+    First we see that the characters being compared are b and a, which clearly are not the same so we use the second
+    part of the formula and compute as follows
+
+    results[row = 1][column = 1] = 1 + min(results[row - 1 = 0][column - 1 = 0] = 0,
+                                           results[row - 1 = 0][column = 1] = 1,
+                                           results[row = 1][column - 1 = 0] = 1)
+
+    results[row = 1][column = 1] = 1 + 0
+
+    In this case the smallest value corresponded to the DIAGONAL move. This diagonal move corresponds to a replace edit,
+    which means that character a in str1 was replaced by character b. This counts as one edit operation which is the
+    reason of the + 1.
+
+    It is important to understand that although just two characters were compared (a and b) this sub-problems
+    corresponds to comparing " b" and " a", essentially two characters for each string. The + 1 in the formula for when
+    characters are different corresponds to the edit operation for the comparison of the current characters (a and b),
+    the min() function is the equivalent of adding the previous edits for the previous sub-problems.
+
+    In this case, after doing the replace edit and turning str1: " a" into str1: " b" we are looking at the strings as
+    follows:
+
+    str1: " b" str2: " b"
+
+    Since the last character for both strings is the same we can ignore them and look the a sub-problem corresponding to
+    the following:
+
+    str1: " " str2: " "
+
+    This corresponds to sub-problem (0, 0) which we already solved and has an answer of 0 edits.
+
+    Since we want to know the minimum number of edits to go from str1 to str2, we add the result of this sub-problem to
+    what we already have. (1 + 0)
+
+    The results matrix looks as follows:
+
+             0    1   2   3
+          |" "| a | b | c |
+      _____________________
+    0 " " | 0 | 1 | 2 | 3 |
+      _____________________
+    1  b  | 1 | 1 | 0 | 0 |
+      _____________________
+    2  c  | 2 | 0 | 0 | 0 |
+      _____________________
+    3  d  | 3 | 0 | 0 | 0 |
+      _____________________
+
+    The next sub-problem is at (1, 2), here we have the case when the characters are the same since we compare b and b.
+    compared. Here something similar occurs. Following from the formula the answer becomes whatever is at position
+    (0, 1), which is the previous diagonal answer. The reason for this is because these characters are ignored for being
+    the same, there is no need for considering them. And instead of solving the sub-problem:
+
+    str1: " ab" -> str2: " b"
+
+    Once these characters are ignored we are actually solving the sub-problem:
+
+    str1: " a" -> str2: " "
+
+    For which we already have a solution at position (0, 1). In this case the result is 0. And the results matrix looks
+    as follows.
+
+
+            0    1   2   3
+          |" "| a | b | c |
+      _____________________
+    0 " " | 0 | 1 | 2 | 3 |
+      _____________________
+    1  b  | 1 | 1 | 1 | 0 |
+      _____________________
+    2  c  | 2 | 0 | 0 | 0 |
+      _____________________
+    3  d  | 3 | 0 | 0 | 0 |
+      _____________________
+
+    Applying a BACK move is the same as deleting the current character from the str1
+
+    Applying an UP move is the same as inserting the current character from str2 into st1
+
+    Applying a DIAGONAL move is the same as replacing.
+
+    This can be proven when visualizing the new sub-problems being solved after each of these edit operations.
+
 
     :param str1: string
     :param str2: string
@@ -79,6 +220,8 @@ def get_min_edits_brute_force(str1, str2, results):
     return results[-1][-1]
 
 
+# Time: O(n * m) time, where n and m are the lengths of the first and second strings.
+# Space: O(n * m) space
 def initialize_results_brute_force(str1, str2):
     """ Helper function for my brute force solution, initializes results matrix
 
@@ -96,16 +239,16 @@ def initialize_results_brute_force(str1, str2):
     str2: " yabd"
 
     And the resulting matrix is as follows (not yet initialized):
-       0    1    2   3   4
-    0     |" "| a | b | c |
+            0    1   2   3
+          |" "| a | b | c |
       _____________________
-    1 " " |   |   |   |   |
+    0 " " |   |   |   |   |
       _____________________
-    2  b  |   |   |   |   |
+    1  b  |   |   |   |   |
       _____________________
-    3  c  |   |   |   |   |
+    2  c  |   |   |   |   |
       _____________________
-    4  d  |   |   |   |   |
+    3  d  |   |   |   |   |
       _____________________
 
     The initialization works by iterating over the characters using a nested for loop where, in each row, the first
@@ -113,16 +256,16 @@ def initialize_results_brute_force(str1, str2):
 
     This results in the following results matrix:
 
-       0    1    2   3   4
-    0     |" "| a | b | c |
+            0    1   2   3
+          |" "| a | b | c |
       _____________________
-    1 " " | 0 | 1 | 2 | 3 |
+    0 " " | 0 | 1 | 2 | 3 |
       _____________________
-    2  b  | 1 | 0 | 0 | 0 |
+    1  b  | 1 | 0 | 0 | 0 |
       _____________________
-    3  c  | 2 | 0 | 0 | 0 |
+    2  c  | 2 | 0 | 0 | 0 |
       _____________________
-    4  d  | 3 | 0 | 0 | 0 |
+    3  d  | 3 | 0 | 0 | 0 |
       _____________________
 
     In this case, the first row and first column values correspond to the answers to those sub-problems. These solutions
@@ -151,7 +294,7 @@ def initialize_results_brute_force(str1, str2):
     2) str1: " " -> str2: " b"
     3) str1: " " -> str2: " bc"
     4) str1: " " -> str2: " bcd"
-    
+
     So here, the edit operations are insertions of characters where for the first sub-problem no insertion ahs to be
     made, for the second one only one insertion (character b), and so on.
 
