@@ -101,3 +101,6 @@ def number_of_ways_to_traverse_graph_constant_space(width, height):
 
     else:
         return results[0][-1]
+
+
+# Original solutions
