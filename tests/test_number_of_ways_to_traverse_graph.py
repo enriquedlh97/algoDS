@@ -4,7 +4,8 @@ import sys
 import pytest
 
 from algosds.problems.categories.dynamic_programming.number_of_ways_to_traverse_graph import \
-    number_of_ways_to_traverse_graph_recursive, number_of_ways_to_traverse_graph_recursive_dynamic_programming
+    number_of_ways_to_traverse_graph_recursive, number_of_ways_to_traverse_graph_dynamic_programming, \
+    number_of_ways_to_traverse_graph_constant_space
 
 
 myPath = os.path.dirname(os.path.abspath(__file__))
@@ -35,4 +36,9 @@ def test_number_of_ways_to_traverse_graph_recursive(width, height, answer):
 
 @pytest.mark.parametrize("width, height, answer", tests)
 def test_number_of_ways_to_traverse_graph_recursive_dynamic_programming(width, height, answer):
-    assert number_of_ways_to_traverse_graph_recursive_dynamic_programming(width, height) == answer
+    assert number_of_ways_to_traverse_graph_dynamic_programming(width, height) == answer
+
+
+@pytest.mark.parametrize("width, height, answer", tests)
+def test_number_of_ways_to_traverse_graph_constant_space(width, height, answer):
+    assert number_of_ways_to_traverse_graph_constant_space(width, height) == answer

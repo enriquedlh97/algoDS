@@ -51,7 +51,7 @@ def number_of_ways_to_traverse_graph_recursive(width, height):
 
 # Time: O(n * m) time, where n and m are the lengths of the first and second strings.
 # Space: O(n * m) space
-def number_of_ways_to_traverse_graph_recursive_dynamic_programming(width, height):
+def number_of_ways_to_traverse_graph_dynamic_programming(width, height):
     """ My solution using dynamic programming
 
     :param width: Integer representing the height of the grid
@@ -72,3 +72,32 @@ def number_of_ways_to_traverse_graph_recursive_dynamic_programming(width, height
         results.append(column)
 
     return results[-1][-1]
+
+
+# Time: O(n * m) time, where n and m are the lengths of the first and second strings.
+# Space: O(n * m) space
+def number_of_ways_to_traverse_graph_constant_space(width, height):
+    """ My solution using dynamic programing that takes constant space
+
+    :param width: Integer representing the height of the grid
+    :param height: Integer representing the width of the grid
+    :return: Integer representing the number of ways to traverse the graph from top left corner to bottom right corner
+    """
+    # Build matrix and fill it with solution
+    results = [[1 for _ in range(height)], [0 for _ in range(height)]]
+
+    if width > 1:
+        for col in range(1, width):
+            for row in range(height):
+                if row == 0:
+                    results[1][row] = 1
+                else:
+                    results[1][row] = results[0][row] + results[1][row - 1]
+
+            if col < width - 1:
+                results[0], results[1] = results[1], [0 for _ in range(height)]
+
+        return results[-1][-1]
+
+    else:
+        return results[0][-1]
