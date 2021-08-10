@@ -39,6 +39,6 @@ def test_number_of_ways_to_traverse_graph_recursive_dynamic_programming(width, h
     assert number_of_ways_to_traverse_graph_dynamic_programming(width, height) == answer
 
 
-# @pytest.mark.parametrize("width, height, answer", tests)
-# def test_number_of_ways_to_traverse_graph_constant_space(width, height, answer):
-#     assert number_of_ways_to_traverse_graph_constant_space(width, height) == answer
+@pytest.mark.parametrize("width, height, answer", tests)
+def test_number_of_ways_to_traverse_graph_constant_space(width, height, answer):
+    assert number_of_ways_to_traverse_graph_constant_space(width, height) == answer
