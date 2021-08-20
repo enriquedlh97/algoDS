@@ -123,7 +123,7 @@ def number_of_ways_to_top(height, max_steps):
 # O(k^n) time where n is the height and k the number of allowed steps
 # O(n) space
 def staircase_traversal_recursive_original_optimal(height, max_steps):
-    return number_of_ways_to_top(height, max_steps, {0: 1, 1: 1})
+    return number_of_ways_to_top_optimal(height, max_steps, {0: 1, 1: 1})
 
 
 def number_of_ways_to_top_optimal(height, max_steps, memoize):
@@ -133,7 +133,7 @@ def number_of_ways_to_top_optimal(height, max_steps, memoize):
     number_of_ways = 0
 
     for step in range(1, min(max_steps, height) + 1):
-        number_of_ways += number_of_ways_to_top(height - step, max_steps, memoize)
+        number_of_ways += number_of_ways_to_top_optimal(height - step, max_steps, memoize)
 
     return number_of_ways
 
@@ -147,10 +147,10 @@ def staircase_traversal_dynamic_programming_original_suboptimal(height, max_step
     for current_height in range(2, height + 1):
         step = 1
         while step <= max_steps and step <= current_height:
-            ways_to_top[current_height] = ways_to_top[current_height] + ways_to_top[current_height - 1]
+            ways_to_top[current_height] = ways_to_top[current_height] + ways_to_top[current_height - step]
             step += 1
 
-    return  ways_to_top[height]
+    return ways_to_top[height]
 
 
 # O(n) time where n is the height and k the number of allowed steps
@@ -163,10 +163,10 @@ def staircase_traversal_dynamic_programming_original_optimal(height, max_steps):
         start_of_window = current_height - max_steps - 1
         end_of_window = current_height - 1
 
-        if start_of_window >=0:
+        if start_of_window >= 0:
             current_number_of_ways -= ways_to_top[start_of_window]
 
         current_number_of_ways += ways_to_top[end_of_window]
         ways_to_top.append(current_number_of_ways)
 
-    return  ways_to_top[height]
+    return ways_to_top[height]
