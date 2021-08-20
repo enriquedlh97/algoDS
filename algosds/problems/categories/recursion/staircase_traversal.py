@@ -36,6 +36,54 @@ Output:
 def staircase_traversal_dynamic_programming_suboptimal(height, max_steps):
     """ My suboptimal dynamic programming solution
 
+    This solution works by creating a table of size height * max_steps. Each entry in this table corresponds to a
+    sub-problem. Dynamic programming is used to solve each sub-problem incrementally until the final original
+    sub-problem is solved.
+
+    For example, when
+
+    height = 3
+    max_steps = 2
+
+    A table of sub-problems is created initialized as follows:
+
+       height	0	1	2	3
+    max steps
+        0		1	0	0	0
+        1		1	0	0	0
+        2		1	0	0	0
+
+    What this table shows is the results for the sub-problems where the height = 0 and for all steps (0, 1, 2).
+
+    For the first sub-problem (0, 0) where the height = 0  and max steps = 0 the solution is 1 because we are
+    essentially asking in how many ways we can climb a staircase of height 0. The only solution is to not do anything,
+    that is why 1 is the answer. The important thing to notice is how this result will not change no matter the max step
+    size. For that reason, the first column of sub-problems can be initialized with 1s.
+
+    Then, to actually solve the rest of the sub-problems, we have to iterate for each step size and for each step size
+    we iterate over each height. This means we essentially solve row by row. Another important thing is that we start
+    solving from ste size 1 because the row containing the sub-problems for step size 0 is already solved in the
+    initialization. All sub-problems but the first one are 0 because when the step size is 0, it is impossible to climb.
+
+    For that reason, the first sub-problem that is solved is the one found at (1, 1) where max step = 1 and height = 1.
+
+    All sub-problems are solved using the following formula (assuming results is the results matrix):
+
+    results[current_step][height] = for step in (current_step to 0) sum -> results[current_step][height - step] when current_step < height
+                                    results[current_step - 1][height]    when step > height
+
+    What this formula essentially means is that there are two possibilities. The first one is when the current step is
+    smaller than the height of the current sub-problem. The second possibility is when the step is bigger than the
+    height in the current sub-problem.
+
+    For the second case, when the step is bigger than the current sub-problem we just take the solution for the
+    sub-problem with the current height but one ste size lower results[current_step - 1][height]. This is because when
+    the step size is bigger than the height, nothing new is added.
+
+    For the first case, when the step is smaller than the current height the solution is gotten iteratively. 
+
+
+
     :param height: integer representing the height of the staircase
     :param max_steps: integer representing the maximum step size
     :return: integer representing the number of ways to climb the staircase
