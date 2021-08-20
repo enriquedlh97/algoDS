@@ -34,6 +34,12 @@ Output:
 # O(n * m) time where n is the height and m the mx step size
 # O(n * m) space
 def staircase_traversal_dynamic_programming_suboptimal(height, max_steps):
+    """ My suboptimal dynamic programming solution
+
+    :param height: integer representing the height of the staircase
+    :param max_steps: integer representing the maximum step size
+    :return: integer representing the number of ways to climb the staircase
+    """
     # Initialize results array
     results = initialize_results(height, max_steps)
 
@@ -47,6 +53,12 @@ def staircase_traversal_dynamic_programming_suboptimal(height, max_steps):
 
 
 def initialize_results(height, max_steps):
+    """ helper function to initialize results array
+
+    :param height: integer representing the height of the staircase
+    :param max_steps: integer representing the maximum step size
+    :return: array of initialized results
+    """
     row_init = [0 for _ in range(height + 1)]
     row_init[0] = 1
     results = []
@@ -57,6 +69,13 @@ def initialize_results(height, max_steps):
 
 
 def get_result(step_idx, height_idx, results):
+    """ Helper function, performs actual logic
+
+    :param step_idx:
+    :param height_idx:
+    :param results:
+    :return:
+    """
     if step_idx > height_idx:
         return results[step_idx - 1][height_idx]
 
@@ -72,6 +91,12 @@ def get_result(step_idx, height_idx, results):
 # O(n * m) time where n is the height and m the mx step size
 # O(n) space
 def staircase_traversal_dynamic_programming_optimal(height, max_steps):
+    """ My optimal dynamic programming solution
+
+    :param height: integer representing the height of the staircase
+    :param max_steps: integer representing the maximum step size
+    :return: integer representing the number of ways to climb the staircase
+    """
     # Initialize results array
     results = [[0 for _ in range(height + 1)], [0 for _ in range(height + 1)]]
     results[0][0], results[1][0] = 1, 1
@@ -90,6 +115,13 @@ def staircase_traversal_dynamic_programming_optimal(height, max_steps):
 
 
 def get_result_dp(step_idx, height_idx, results):
+    """ Helper function, performs actual logic
+
+    :param step_idx:
+    :param height_idx:
+    :param results:
+    :return: integer representing the number of ways to climb the staircase
+    """
     if step_idx > height_idx:
         return results[0][height_idx]
 
@@ -105,10 +137,22 @@ def get_result_dp(step_idx, height_idx, results):
 # O(k^n) time where n is the height and k the number of allowed steps
 # O(n) space
 def staircase_traversal_recursive_original(height, max_steps):
+    """ Original suboptimal recursive solution
+
+    :param height: integer representing the height of the staircase
+    :param max_steps: integer representing the maximum step size
+    :return: integer representing the number of ways to climb the staircase
+    """
     return number_of_ways_to_top(height, max_steps)
 
 
 def number_of_ways_to_top(height, max_steps):
+    """ Helper function, performs actual logic
+
+    :param height: integer representing the height of the staircase
+    :param max_steps: integer representing the maximum step size
+    :return: integer representing the number of ways to climb the staircase
+    """
     if height <= 1:
         return 1
 
@@ -123,10 +167,23 @@ def number_of_ways_to_top(height, max_steps):
 # O(k^n) time where n is the height and k the number of allowed steps
 # O(n) space
 def staircase_traversal_recursive_original_optimal(height, max_steps):
+    """ Original optimal recursive solution
+
+    :param height: integer representing the height of the staircase
+    :param max_steps: integer representing the maximum step size
+    :return: integer representing the number of ways to climb the staircase
+    """
     return number_of_ways_to_top_optimal(height, max_steps, {0: 1, 1: 1})
 
 
 def number_of_ways_to_top_optimal(height, max_steps, memoize):
+    """ Helper function, performs actual logic
+
+    :param height: integer representing the height of the staircase
+    :param max_steps: integer representing the maximum step size
+    :param memoize:
+    :return: integer representing the number of ways to climb the staircase
+    """
     if height in memoize:
         return memoize[height]
 
@@ -141,6 +198,12 @@ def number_of_ways_to_top_optimal(height, max_steps, memoize):
 # O(n * k) time where n is the height and k the number of allowed steps
 # O(n) space
 def staircase_traversal_dynamic_programming_original_suboptimal(height, max_steps):
+    """ Original suboptimal dynamic programming solution
+
+    :param height: integer representing the height of the staircase
+    :param max_steps: integer representing the maximum step size
+    :return: integer representing the number of ways to climb the staircase
+    """
     ways_to_top = [0 for _ in range(height + 1)]
     ways_to_top[0], ways_to_top[1] = 1, 1
 
@@ -156,6 +219,12 @@ def staircase_traversal_dynamic_programming_original_suboptimal(height, max_step
 # O(n) time where n is the height and k the number of allowed steps
 # O(n) space
 def staircase_traversal_dynamic_programming_original_optimal(height, max_steps):
+    """ Original optimal dynamic programming solution
+
+    :param height: integer representing the height of the staircase
+    :param max_steps: integer representing the maximum step size
+    :return: integer representing the number of ways to climb the staircase
+    """
     current_number_of_ways = 0
     ways_to_top = [1]
 
